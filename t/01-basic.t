@@ -21,16 +21,15 @@
 
 use 5.005;
 use strict;
-use warnings;
 use Test;
 
 BEGIN { plan tests => 4 }
 
 use FindBin;
-use File::Spec::Functions qw(catdir catfile updir);
+use File::Spec qw();
 use lib $FindBin::Bin;
 use vars qw($chklinks);
-$chklinks = catfile($FindBin::Bin, updir, "blib", "script", "chklinks");
+$chklinks = File::Spec->catfile($FindBin::Bin, File::Spec->updir, "blib", "script", "chklinks");
 
 # The chklinks script
 # Help

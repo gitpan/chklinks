@@ -1,5 +1,19 @@
 chklinks change log
 
+2003-05-26	version 2.02
+	 1. The default changed from onelevel to recursive.
+	    This is more desirable in most cases.
+	 2. Documentation fixes.
+	 3. The chklinks website is done.
+	 4. 01-basic.t: File::Spec is used instead of
+	    File::Spec::Functions, in order to work with
+	    perl 5.005.
+	 5. PGP key added.
+	 6. HTML documents added.
+	 7. Chinese GPL (both simplified and traditional)
+	    are added.
+	 8. FDL added.
+
 2003-05-25	version 2.01
 	 1. An installer, accessary files and a POD document
 	    are added.

@@ -1,5 +1,7 @@
 AUTHORS
 COPYING
+COPYING.zh-cn
+COPYING.zh-tw
 ChangeLog
 INSTALL
 MANIFEST			This list of files
@@ -9,5 +11,9 @@ README
 THANKS
 TODO
 bin/chklinks
+chklinks.en.html
+chklinks.zh-cn.html
+chklinks.zh-tw.html
+fdl.txt
 pgpkey.asc
 t/01-basic.t

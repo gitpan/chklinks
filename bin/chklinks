@@ -29,7 +29,7 @@ use URI qw();
 use vars qw($THIS_FILE $VERSION);
 $0 =~ /[^\/]*$/;
 $THIS_FILE = $&;
-$VERSION = 2.01;
+$VERSION = 2.02;
 
 use vars qw(%DNS %SOCKS %NORECON_REP %URIS %REFS);
 use vars qw(@LOCALS $LTARGET %LFOUND $STARTDIR @REMOTES %RFOUND);
@@ -41,7 +41,7 @@ use vars qw($TOTAL $SUCCESS);
 %REFS = qw();
 
 use vars qw($RECURSIVE $PARENT $NOREMOTE @EXCLUDES $VERBOSE);
-$RECURSIVE = 0;
+$RECURSIVE = 1;
 $PARENT = 0;
 $NOREMOTE = 0;
 @EXCLUDES = qw();
@@ -55,8 +55,8 @@ $HELPMSG = << "EOT";
 Usage: chklinks.pl [options] url
 Check links on the specific website.
 
-  -1,--onelevel      Check the links on this page and stops. (default)
-  -r,--recursive     Recursively check through all the links on this host.
+  -1,--onelevel      Check the links on this page and stops.
+  -r,--recursive     Recursively check through this site. (default)
   -b,--below         Only check the links below this directory. (default)
   -p,--parent        Trace back to the parent directories.
   -l,--local         Only check the links on this same host.
@@ -714,12 +714,14 @@ chklinks - A non-threaded perl link checker
 
 =head1 DESCRIPTION
 
-chklinks is a non-threaded perl link checker that helps you find your
-broken links on your website.  It is designed to be a non-threaded
-replacement of linkchecker.  The linkchecker raises large amount of
-simultaneously connections for its checking, which may run out of your
-resources and hence crash your system in a moment.  This is certainly
-not desirable for most webmasters and users.
+C<chklinks> is a perl link checker.  It helps finding broken links
+on your website.
+
+C<chklinks> differs from C<linkchecker> in that C<chklinks> is non-
+threaded.  It does not raises many simultaneously connections for its
+job.  It won't run out of the resources and crash your system in a
+moment.  This is certainly more desirable for most webmasters and
+users.
 
 =head1 OPTIONS
 
@@ -727,15 +729,15 @@ not desirable for most webmasters and users.
 
 =item -1,--onelevel
 
-Check the links on this page and stops. (default)
+Check the links on this page and stops.
 
 =item -r,--recursive
 
-Recursively check through all the links on this host.
+Recursively check through this website.  This is the default.
 
 =item -b,--below
 
-Only check the links below this directory. (default)
+Only check the links below this directory.  This is the default.
 
 =item -p,--parent
 
@@ -747,34 +749,36 @@ Only check the links on this same host.
 
 =item -s,--span
 
-Check the links to other hosts (without recursion). (default)
+Check the links to other hosts (without recursion).  This is the
+default.
 
 =item -e,--exclude path
 
 Exclude this path.  Check for their existence but not check the links
-on them, just like they are on a foreign site.  Multiple --exclude
+on them, just like they are on a foreign site.  Multiple C<--exclude>
 are OK.
 
 =item -i,--include path
 
-Include this path.  An opposite of --exclude that cancels its effect.
-The latter specified has a higher priority.
+Include this path.  An opposite of C<--exclude> that cancels its
+effect.  The latter specified has a higher priority.
 
 =item -d,--debug
 
-Display debug messages.  Multiple --debug to debug more.
+Display debug messages.  Multiple C<--debug> to debug more.
 
 =item -q,--quiet
 
-Disable debug messages.  An opposite that cancels the effect of --debug.
+Disable debug messages.  An opposite that cancels the effect of
+C<--debug>.
 
 =item -h,--help
 
-Display the help message.
+Display the help message and exit.
 
 =item -v,--version
 
-Display version number.
+Output version information and exit.
 
 =item URL
 
@@ -788,9 +792,11 @@ Report bugs to imacat <imacat@mail.imacat.idv.tw>.
 
 =head1 SUPPORT
 
-chklinks is hosted on SourceForge.  For the latest infomation, see
-http://chklinks.sourceforge.net/ or
-http://sourceforge.net/projects/chklinks .
+chklinks is hosted on SourceForge, CPAN and Tavern IMACAT's.  For the
+latest infomation, see http://chklinks.sourceforge.net/ ,
+http://sourceforge.net/projects/chklinks/ ,
+http://search.cpan.org/dist/chklinks/ or
+http://www.imacat.idv.tw/tech/chklinks.html .
 
 chklinks has a user discussion mailing list hosted at
 SourceForge: chklinks-users@lists.sourceforge.net .  It is a mailman
