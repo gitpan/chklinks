@@ -1,12 +1,26 @@
 #! /usr/bin/perl -w
-# 程式檔名: chklinks
-# 程式說明: 旅舍依瑪連結檢查程式
-# 程式作者: 依瑪貓 imacat <imacat@mail.imacat.idv.tw>
-# 初稿日期: 2003-04-12
-# 版權字樣: 版權所有 (c) 2003 依瑪貓
+# A non-threaded perl link checker
+# 
+# Copyright (c) 2003 imacat.
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# 
+# First written 2003-04-12
 
+use 5.005;
 use strict;
-
 use Getopt::Long qw(GetOptions);
 use Net::HTTP qw();
 use Socket qw(inet_aton inet_ntoa);
@@ -15,7 +29,7 @@ use URI qw();
 use vars qw($THIS_FILE $VERSION);
 $0 =~ /[^\/]*$/;
 $THIS_FILE = $&;
-$VERSION = "2.0.0";
+$VERSION = 2.01;
 
 use vars qw(%DNS %SOCKS %NORECON_REP %URIS %REFS);
 use vars qw(@LOCALS $LTARGET %LFOUND $STARTDIR @REMOTES %RFOUND);
@@ -49,12 +63,12 @@ Check links on the specific website.
   -s,--span          Check the links to other hosts (without recursion).
                      (default)
   -e,--exclude path  Exclude this path.  Check for their existence but not
-                     check the links on it, just like they are on another
-                     host.  Multiple --exclude are OK.
-  -i,--include path  Include this path.  An opposite of --exclude that can
-                     cancel its effect.  The latter has a higher priority.
+                     check the links on them, just like they are on a foreign
+                     site.  Multiple --exclude are OK.
+  -i,--include path  Include this path.  An opposite of --exclude that cancels
+                     its effect.  The latter specified has a higher priority.
   -d,--debug         Display debug messages.  Multiple --debug to debug more.
-  -q,--quiet         Disable debug messages.  An opposite that can cancel the
+  -q,--quiet         Disable debug messages.  An opposite that cancels the
                      effect of --debug.
   -h,--help          Display this help.
   -v,--version       Display version number.
@@ -689,3 +703,127 @@ sub is_excluded {
 }
 
 __END__
+
+=head1 NAME
+
+chklinks - A non-threaded perl link checker
+
+=head1 SYNOPSIS
+
+   chklinks [options] URL
+
+=head1 DESCRIPTION
+
+chklinks is a non-threaded perl link checker that helps you find your
+broken links on your website.  It is designed to be a non-threaded
+replacement of linkchecker.  The linkchecker raises large amount of
+simultaneously connections for its checking, which may run out of your
+resources and hence crash your system in a moment.  This is certainly
+not desirable for most webmasters and users.
+
+=head1 OPTIONS
+
+=over
+
+=item -1,--onelevel
+
+Check the links on this page and stops. (default)
+
+=item -r,--recursive
+
+Recursively check through all the links on this host.
+
+=item -b,--below
+
+Only check the links below this directory. (default)
+
+=item -p,--parent
+
+Trace back to the parent directories.
+
+=item -l,--local
+
+Only check the links on this same host.
+
+=item -s,--span
+
+Check the links to other hosts (without recursion). (default)
+
+=item -e,--exclude path
+
+Exclude this path.  Check for their existence but not check the links
+on them, just like they are on a foreign site.  Multiple --exclude
+are OK.
+
+=item -i,--include path
+
+Include this path.  An opposite of --exclude that cancels its effect.
+The latter specified has a higher priority.
+
+=item -d,--debug
+
+Display debug messages.  Multiple --debug to debug more.
+
+=item -q,--quiet
+
+Disable debug messages.  An opposite that cancels the effect of --debug.
+
+=item -h,--help
+
+Display the help message.
+
+=item -v,--version
+
+Display version number.
+
+=item URL
+
+The URL of the website to check for.
+
+=back
+
+=head1 BUGS
+
+Report bugs to imacat <imacat@mail.imacat.idv.tw>.
+
+=head1 SUPPORT
+
+chklinks is hosted on SourceForge.  For the latest infomation, see
+http://chklinks.sourceforge.net/ or
+http://sourceforge.net/projects/chklinks .
+
+chklinks has a user discussion mailing list hosted at
+SourceForge: chklinks-users@lists.sourceforge.net .  It is a mailman
+mailing list.  For infomation on how to join or leave, see:
+http://lists.sourceforge.net/lists/listinfo/chklinks-users .
+Alternatively, you can send a mail to:
+chklinks-users-request@lists.sourceforge.net with the subject C<help>
+for a list of available commands.
+
+=head1 SEE ALSO
+
+None.
+
+=head1 AUTHOR
+
+imacat <imacat@mail.imacat.idv.tw>.
+
+=head1 COPYRIGHT
+
+Copyright (c) 2003 imacat.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but I<WITHOUT ANY WARRANTY>; without even the implied warranty of
+I<MERCHANTABILITY> or I<FITNESS FOR A PARTICULAR PURPOSE>.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+=cut

@@ -1,0 +1,25 @@
+chklinks Installation Guide
+
+chklinks uses the standard perl installation procedure.
+
+perl Makefile.PL
+make
+make test
+make install
+
+You can specify a third argument for the target directories.  For
+example, if you want to install it with the perl itself:
+
+perl Makefile.PL INSTALLDIRS=perl
+make
+make test
+make install
+
+Alternatively, if you want to install to other places:
+
+perl Makefile.PL INSTALLBIN=$HOME/bin
+make
+make test
+make install
+
+See ExtUtils::MakeMaker(3) for more options on this.
