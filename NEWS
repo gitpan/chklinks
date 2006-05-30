@@ -1,3 +1,16 @@
+New in 3.00:
+* chklinks follows robots.txt rules now.  If you disallow robots from your
+  website and experience problems, you need to allow chklinks.  Add the
+  following lines to your robots.txt file to allow chklinks:
+
+    User-agent: chklinks
+    Disallow:
+
+* chklinks now uses LWP::RobotUA and support the following schemes in
+  addition to http: http, https, ftp, gopher, file.  You can also specify a
+  local file.  (To use https, you need to install Crypt::SSLeay.)
+* Cookies are supported now.
+
 New in 2.02:
 * The default changed from onelevel to recursive.  This is more
   desirable in most cases.

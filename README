@@ -1,29 +1,57 @@
 chklinks - a non-threaded perl link checker.
 
-    Copyright (C) 2003 imacat.
-    
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  Copyright (c) 2003-2006 imacat.
+  
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-    chklinks is a non-threaded perl link checker.  See INSTALL
-on guide to the installation.
+    chklinks is a Perl link checker.  It helps finding broken links
+on your website.
 
-    chklinks is hosted on SourceForge.  For the latest infomation, see:
+    chklinks differs from linkchecker in that chklinks is
+non-threaded.  It does not raises many simultaneously connections for
+its job.  It won't run out of the resources and crash your system in a
+moment.  This is certainly more desirable for most webmasters and
+users.
 
-      http://chklinks.sourceforge.net/
-      http://sourceforge.net/projects/chklinks/
-      http://search.cpan.org/dist/chklinks/
-      http://www.imacat.idv.tw/tech/chklinks.html
+    chklinks follows robots.txt rules.  If you disallow robots from
+your website and experience problems, you need to allow chklinks.
+Add the following lines to your robots.txt file to allow chklinks:
+
+      User-agent: chklinks
+      Disallow:
+
+    chklinks uses LWP::RobotUA(3) and support the following schemes:
+http, https, ftp, gopher, file.  You can also specify a local file.
+(To use https, you need to install Crypt::SSLeay.)
+
+    chklinks supports cookies.
+
+    See INSTALL for instructions on how to install chklinks.
+
+    chklinks is hosted on SourceForge, CPAN and Tavern IMACAT's.  For
+the latest infomation, see:
+
+     * http://chklinks.sourceforge.net/
+     * http://sourceforge.net/projects/chklinks/
+     * http://search.cpan.org/dist/chklinks/
+     * http://www.imacat.idv.tw/tech/chklinks.html
 
     Report bugs to imacat <imacat@mail.imacat.idv.tw>.
+
+
+imacat
+2006-05-30
+imacat@mail.imacat.idv.tw
+http://www.imacat.idv.tw/

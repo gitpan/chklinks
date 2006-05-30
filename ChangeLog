@@ -1,22 +1,65 @@
 chklinks change log
 
+2006-05-30
+	 1. Documentation fixes.
+
+2006-05-29
+	 1. Fixed the usage in usage help from chklinks.pl to chklinks.  Fixed
+	    the help text from "check for" to "check against".
+	 2. Change the name fetch_doc_redir() to fetch_redir() and
+	    fetch_doc_noredir() to fetch_noredir().
+	 3. t/00-signature.t and 99-pod.t: added.
+	 4. t/htdocs: a simple test suite is created.  t/01-basic.t is rewritten
+	    to use that test suite.
+
+2006-05-28
+	 1. Use warn() instead of print STDERR in warnings.
+	 2. Added %ALLOWED_SCHEMES, with 5 protocols supported: http, https,
+	    ftp, file and gopher, which are supported protocols common to LWP
+	    and URI.
+	 3. parse_args() and proc_link_val(): Modified to respect
+	    %ALLOWED_SCHEMES instead of filtering out everything but HTTP.
+	 4. check_links(): Fixed the comment from
+	    "We will never parse the remote documents" to
+	    "We are not parsing remote documents".
+	 5. Removed unnecessary scalar() in parse_args() and check_links().
+	 6. parse_args(): Updated the warning, change
+	    "Skipping scheme-less URI" to "Skipping URI without a scheme",
+	    change "Skipping hostless URI" to "Skipping URI without a host".
+	 7. Use LWP::RobotUA to make request instead of making HTTP request
+	    myself.  Added fetch_doc_noredir(), fetch_doc_redir(), get_ua()
+	    and get_target() to replace fetch_http(), fetch_http_redir(),
+	    new_http() and re_http().
+	 8. Changed User-Agent text from chklinks/version to
+	    chklinks-robot/version.
+	 9. Use HTTP::Cookies to save and use the cookies.  As $COOKIE_JAR
+	    as the common cookie jar for all the UA objects.
+	10. Added noreq_key() and %NOREQ_HOSTS to prevent bothering servers
+	    that are not available and returning HTTP 503.
+	11. Support file:// scheme gracefully.  Added rep_uri() to report
+	    the file:// URI gracefully.  Currently tested on Linux and
+	    MSWin32.  More tests required.
+	12. Moved chklinks from bin directory to the source root.
+
+2006-05-27
+	 1. Add the prototype declaration.
+	 2. Use HTML::LinkExtor to parse and extract the links in an HTML
+	    page, instead of parsing it myself.
+
 2003-05-26	version 2.02
-	 1. The default changed from onelevel to recursive.
-	    This is more desirable in most cases.
+	 1. The default changed from onelevel to recursive.  This is more
+	    desirable in most cases.
 	 2. Documentation fixes.
 	 3. The chklinks website is done.
-	 4. 01-basic.t: File::Spec is used instead of
-	    File::Spec::Functions, in order to work with
-	    perl 5.005.
+	 4. 01-basic.t: File::Spec is used instead of File::Spec::Functions,
+	    in order to work with perl 5.005.
 	 5. PGP key added.
 	 6. HTML documents added.
-	 7. Chinese GPL (both simplified and traditional)
-	    are added.
+	 7. Chinese GPL (both simplified and traditional) are added.
 	 8. FDL added.
 
 2003-05-25	version 2.01
-	 1. An installer, accessary files and a POD document
-	    are added.
+	 1. An installer, accessary files and a POD document are added.
 
 2003-05-25	version 2.0.0
 	 1. First public release uploaded onto SourceForge.

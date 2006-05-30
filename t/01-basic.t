@@ -1,7 +1,7 @@
 #! /usr/bin/perl -w
-# Test suite on the chklinks script
+# Basic test suite
 # 
-# Copyright (c) 2003 imacat
+# Copyright (c) 2003-2006 imacat.
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,38 +16,77 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-# 
-# First written 2003-05-25
 
 use 5.005;
 use strict;
 use Test;
 
-BEGIN { plan tests => 4 }
+BEGIN { plan tests => 18 }
 
 use FindBin;
+use File::Spec::Functions qw(catdir updir);
 use File::Spec qw();
 use lib $FindBin::Bin;
-use vars qw($chklinks);
-$chklinks = File::Spec->catfile($FindBin::Bin, File::Spec->updir, "blib", "script", "chklinks");
+use vars qw($chklinks $start);
+$chklinks = catdir($FindBin::Bin, updir, "blib", "script", "chklinks");
+$start = catdir($FindBin::Bin, "htdocs", "dir01", "start.html");
 
-# The chklinks script
-# Help
+# one level, locally, only below
 eval {
-    $_ = "";
-    $_ = join "", `$chklinks -h`;
+    @_ = `$chklinks -1 -l -q $start`;
+    $_ = join "", @_;
 };
 # 1
 ok($@, "");
 # 2
-ok($_, qr/Display this help./);
-
-# Version
-eval {
-    $_ = "";
-    $_ = join "", `$chklinks -v`;
-};
+ok(scalar(@_), 1);
 # 3
-ok($@, "");
+ok($_, qr/test02.html/);
+
+# one level, locally, check parent
+eval {
+    @_ = `$chklinks -1 -l -p -q $start`;
+    $_ = join "", @_;
+};
 # 4
-ok($_, qr/by imacat <imacat\@mail.imacat.idv.tw>/);
+ok($@, "");
+# 5
+ok(scalar(@_), 3);
+# 6
+ok($_, qr/test2.css/);
+# 7
+ok($_, qr/test02.html/);
+# 8
+ok($_, qr/test04.html/);
+
+# recursive, locally, only below
+eval {
+    @_ = `$chklinks -l -q $start`;
+    $_ = join "", @_;
+};
+# 9
+ok($@, "");
+# 10
+ok(scalar(@_), 2);
+# 11
+ok($_, qr/test02.html/);
+# 12
+ok($_, qr/test3.css/);
+
+# recursive, span remote, only below
+eval {
+    @_ = `$chklinks -q $start`;
+    $_ = join "", @_;
+};
+# 13
+ok($@, "");
+# 14
+ok(scalar(@_), 4);
+# 15
+ok($_, qr/test02.html/);
+# 16
+ok($_, qr/test3.css/);
+# 17
+ok($_, qr/http:\/\/www\.yahoo\.com\/nonexistent/);
+# 18
+ok($_, qr/ftp:\/\/ftp\.cpan\.org\/nonexistent/);

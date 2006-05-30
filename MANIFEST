@@ -1,19 +1,24 @@
 AUTHORS
+ChangeLog
+chklinks
 COPYING
 COPYING.zh-cn
 COPYING.zh-tw
-ChangeLog
+fdl.txt
 INSTALL
-MANIFEST			This list of files
 Makefile.PL
+MANIFEST			This list of files
 NEWS
+pgpkey.asc
 README
+SIGNATURE
+t/00-signature.t
+t/01-basic.t
+t/99-pod.t
+t/htdocs/dir01/start.html
+t/htdocs/dir01/test01.html
+t/htdocs/stylesheets/test.css
+t/htdocs/test03.html
 THANKS
 TODO
-bin/chklinks
-chklinks.en.html
-chklinks.zh-cn.html
-chklinks.zh-tw.html
-fdl.txt
-pgpkey.asc
-t/01-basic.t
+META.yml                                 Module meta-data (added by MakeMaker)

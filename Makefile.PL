@@ -1,7 +1,7 @@
 #! /usr/bin/perl -w
 # Makefile.PL for the chklinks package
 # 
-# Copyright (c) 2003 imacat.
+# Copyright (c) 2003-2006 imacat.
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,11 +27,12 @@ WriteMakefile(
     AUTHOR		=> "imacat <imacat\@mail.imacat.idv.tw>",
     ABSTRACT		=> "A non-threaded perl link checker",
     NAME                => "chklinks",
-    VERSION_FROM        => "bin/chklinks",
+    VERSION_FROM        => "chklinks",
     PREREQ_PM		=> { "Net::HTTP" => 0,
-                             "URI" => 0 },
+                             "URI" => 0,
+                             "HTML::LinkExtor" => 0 },
     
-    EXE_FILES		=> [ "bin/chklinks" ],
+    EXE_FILES		=> [ "chklinks" ],
     dist		=> {
         COMPRESS	=> "gzip -9",
         SUFFIX		=> ".gz",

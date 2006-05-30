@@ -1,1 +1,5 @@
-imacat <imacat@mail.imacat.idv.tw>
+    imacat <imacat@mail.imacat.idv.tw>.
+
+    Thanks to Stefan Seifert <stefan.seifert@atikon.com> for pointing
+out redirection loops problem when cookies are not activated.
+(2005-11-07)
