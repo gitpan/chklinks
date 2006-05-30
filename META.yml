@@ -1,12 +1,14 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         chklinks
-version:      3.00
+version:      3.01
 version_from: chklinks
 installdirs:  site
 requires:
     HTML::LinkExtor:               0
-    Net::HTTP:                     0
+    HTTP::Cookies:                 0
+    HTTP::Request:                 0
+    LWP::RobotUA:                  0
     URI:                           0
 
 distribution_type: module

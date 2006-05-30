@@ -1,6 +1,6 @@
 #! /usr/bin/perl -w
 # A non-threaded perl link checker
-# 
+
 # Copyright (c) 2003-2006 imacat.
 # 
 # This program is free software; you can redistribute it and/or modify
@@ -16,20 +16,32 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+# 版權所有 (c) 2003-2006 依瑪貓
 # 
+# 本程式是自由軟體，您可以遵照自由軟體基金會（ Free Software Foundation
+# ）出版的 GNU 通用公共許可證條款（ GNU General Public License ）第二版
+# 來修改和重新發佈這一程式，或者自由選擇使用任何更新的版本。
+# 
+# 發佈這一程式的目的是希望它有用，但沒有任何擔保。甚至沒有適合特定目的
+# 而隱含的擔保。更詳細的情況請參閱 GNU 通用公共許可證。
+# 
+# 您應該已經和程式一起收到一份 GNU 通用公共許可證的副本。如果還沒有，寫
+# 信給： Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+# Boston, MA 02111-1307, USA.
+
 # First written 2003-04-12
 
-use 5.005;
+use 5.006;
 use strict;
 use Config qw();
 use Cwd qw(getcwd);
-use File::Spec::Functions qw(splitdir catdir rel2abs);
+use File::Spec qw();
 use Getopt::Long qw(GetOptions);
 use HTML::LinkExtor qw();
 use HTTP::Request qw();
 use HTTP::Cookies qw();
 use LWP::RobotUA qw();
-use Net::HTTP qw();
 use Socket qw(inet_aton);
 use Sys::Hostname qw(hostname);
 use URI qw();
@@ -51,7 +63,7 @@ sub rep_uri($);
 use vars qw($THIS_FILE $VERSION);
 $0 =~ /[^\/]*$/;
 $THIS_FILE = $&;
-$VERSION = "3.00";
+$VERSION = "3.01";
 
 use vars qw(%UA %TARGETS %URIS %REFS $COOKIE_JAR);
 use vars qw($LOCAL_TARGET @LOCALS %LFOUND $STARTDIR @REMOTES %RFOUND);
@@ -72,7 +84,8 @@ $NOREMOTE = 0;
 $VERBOSE = 1;
 
 use vars qw($UASTR $VERSTR $SHORTHELP $HELPMSG);
-$UASTR = "$THIS_FILE-robot/$VERSION (using " . LWP::RobotUA->_agent . ")";
+$UASTR = "$THIS_FILE-robot/$VERSION (using " . (LWP::RobotUA->can("_agent")?
+    LWP::RobotUA->_agent: "libwww-perl/" . $LWP::VERSION) . ")";
 $SHORTHELP = "Try `$THIS_FILE --help' for more information.";
 $VERSTR = "$& v$VERSION by imacat <imacat\@mail.imacat.idv.tw>";
 $HELPMSG = << "EOT";
@@ -163,12 +176,12 @@ sub parse_args() {
                 $base =~ s/\/$//;
                 $base =~ s/^\///;
                 $base = new URI("file://localhost/$base/");
-                $uri = new URI(join("/", splitdir($uritext)));
+                $uri = new URI(join("/", File::Spec->splitdir($uritext)));
                 $uri = $uri->abs($base);
             # Systems without symbolic links -- we assume rel2abs() is trustworthy.
             # Like MSWin32
             } else {
-                $uri = new URI("file://localhost/" . join("/", splitdir(rel2abs($uritext))));
+                $uri = new URI("file://localhost/" . join("/", File::Spec->splitdir(File::Spec->rel2abs($uritext))));
                 $uri->scheme("file");
                 $uri->host("localhost");
             }
@@ -654,14 +667,14 @@ sub rep_uri($) {
     return $_ unless s/^file:\/\///;
     # Have something simular to a volumn ID, for MSWin32
     s/^\/([a-z]:)/$1/i;
-    return catdir(split /\//, $_);
+    return File::Spec->catdir(split /\//, $_);
 }
 
 __END__
 
 =head1 NAME
 
-chklinks - A non-threaded perl link checker
+chklinks - A non-threaded Perl link checker
 
 =head1 SYNOPSIS
 
@@ -669,7 +682,7 @@ chklinks - A non-threaded perl link checker
 
 =head1 DESCRIPTION
 
-F<chklinks> is a perl link checker.  It helps finding broken links
+F<chklinks> is a Perl link checker.  It helps finding broken links
 on your website.
 
 F<chklinks> differs from C<linkchecker> in that F<chklinks> is non-
@@ -678,17 +691,19 @@ job.  It won't run out of the resources and crash your system in a
 moment.  This is certainly more desirable for most webmasters and
 users.
 
-F<chklinks> follows robots.txt rules.  If you disallow robots from
-your website and experience problems, you need to allow F<chklinks>.
-Add the following lines to your robots.txt file to allow F<chklinks>:
+F<chklinks> follows F<robots.txt> rules.  If you disallow robots
+from your website and experience problems, you need to allow
+F<chklinks>.  Add the following lines to your F<robots.txt> file to
+allow F<chklinks>:
 
   User-agent: chklinks
   Disallow:
 
 F<chklinks> uses L<LWP::RobotUA(3)|LWP::RobotUA/3> and support the
-following schemes: http, https, ftp, gopher, file.  You can also
+following schemes: http, https, ftp, gopher and file.  You can also
 specify a local file.  (To use https, you need to install
-L<Crypt::SSLeay(3)|Crypt::SSLeay/3>.)
+L<Crypt::SSLeay(3)|Crypt::SSLeay/3>.  This is the requirement of
+L<LWP::RobotUA(3)|LWP::RobotUA/3>.)
 
 F<chklinks> supports cookies.
 
@@ -751,22 +766,23 @@ Output version information and exit.
 
 =item URL1, URL2, URL3
 
-The URLs of the website to check for.
+The URLs of the websites to check against.
 
 =back
 
 =head1 BUGS
 
 F<chklinks> does not support authentication yet.  W3C-LinkChecker
-seems to have support on this.  As a workaround, You can use the
-syntax http://user:pass@some.where.com/some/path for Basic
-Authentication, but this does not work on Digest Authentication.
-This practice is not encouraged, too.  Your password would be visable
-to anyone on this system using ps, including hidden intruders.  Also
-what you type in your shell will be saved to your shell history file.
+have support on this.  As a workaround, You can use the syntax
+http://user:pass@some.where.com/some/path for Basic Authentication,
+but this does not work on Digest Authentication.  This practice is
+not encouraged.  Your password would be visable to anyone on this
+system using F<ps>, including hidden intruders.  Also what you type
+in your shell will be saved to your shell history file.
 
 C<mailto:> URLs should be supported by checking the validity of its
-DNS/MX record.
+DNS/MX record.  Bastian Kleineidam's L<linkchecker(1)|linkchecker/1>
+have support on this.
 
 Local file checking has only been tested on Unix and MSWin32.  More
 platforms should be tested, especially VMS and Mac.
@@ -796,7 +812,7 @@ for a list of available commands.
 L<LWP::UserAgent(3)|LWP::UserAgent/3>,
 L<LWP::RobotUA(3)|LWP::RobotUA/3>, L<WWW::RobotRules(3)|WWW::RobotRules/3>,
 L<URI(3)|URI/3>, L<HTML::LinkExtor(3)|HTML::LinkExtor/3>,
-Bastian Kleineidam's L<linkchecker(1)|linkchecker/1>.
+Bastian Kleineidam's L<linkchecker(1)|linkchecker/1>,
 W3C-LinkChecker L<checklink(1)|checklink/1>.
 
 =head1 AUTHOR

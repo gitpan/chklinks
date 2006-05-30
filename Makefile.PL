@@ -19,7 +19,7 @@
 # 
 # First written 2003-05-25
 
-use 5.005;
+use 5.006;
 use strict;
 use ExtUtils::MakeMaker;
 
@@ -28,8 +28,10 @@ WriteMakefile(
     ABSTRACT		=> "A non-threaded perl link checker",
     NAME                => "chklinks",
     VERSION_FROM        => "chklinks",
-    PREREQ_PM		=> { "Net::HTTP" => 0,
-                             "URI" => 0,
+    PREREQ_PM		=> { "URI" => 0,
+                             "LWP::RobotUA" => 0,
+                             "HTTP::Cookies" => 0,
+                             "HTTP::Request" => 0,
                              "HTML::LinkExtor" => 0 },
     
     EXE_FILES		=> [ "chklinks" ],

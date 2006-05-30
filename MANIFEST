@@ -1,16 +1,25 @@
 AUTHORS
+AUTHORS.zh-cn
+AUTHORS.zh-tw
 ChangeLog
 chklinks
+chklinks.en.html
+chklinks.zh-cn.html
+chklinks.zh-tw.html
 COPYING
 COPYING.zh-cn
 COPYING.zh-tw
 fdl.txt
 INSTALL
+INSTALL.zh-cn
+INSTALL.zh-tw
 Makefile.PL
 MANIFEST			This list of files
 NEWS
 pgpkey.asc
 README
+README.zh-cn
+README.zh-tw
 SIGNATURE
 t/00-signature.t
 t/01-basic.t
@@ -20,5 +29,9 @@ t/htdocs/dir01/test01.html
 t/htdocs/stylesheets/test.css
 t/htdocs/test03.html
 THANKS
+THANKS.zh-cn
+THANKS.zh-tw
 TODO
+TODO.zh-cn
+TODO.zh-tw
 META.yml                                 Module meta-data (added by MakeMaker)

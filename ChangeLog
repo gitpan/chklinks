@@ -1,6 +1,26 @@
 chklinks change log
 
+2006-05-31	version 3.01
+	 1. HTML documents were missing in version 3.00.  I have put them
+	    back.  I have also made a lot of changes, including Web
+	    Accessibility updates.
+	 2. chklinks: Updated $UASTR to use $LWP::VERSION when
+	    LWP::RobotUA->_agent() is not available.  LWP::RobotUA->_agent()
+	    is only available after libwww-perl version 5.53_91. (It's
+	    2001-04-20, though.)
+	 3. chklinks: Use File::Spec instead of File::Spec::Functions.
+	    File::Spec is more compatible in older versions.
+	 4. Several translated Chinese documents are added.
+
 2006-05-30
+	 1. ChangeLog: Added the forgotten version number.
+	 2. Makefile.PL: Added the missing prerequisites LWP::RobotUA,
+	    HTTP::Cookies and HTTP::Request.  Removed Net::HTTP that is not
+	    used anymore.
+	 3. chklinks: Removed the prerequisite Net::HTTP.  It is not used
+	    anymore.
+
+2006-05-30	version 3.00
 	 1. Documentation fixes.
 
 2006-05-29

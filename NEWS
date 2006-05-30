@@ -1,3 +1,7 @@
+New in 3.01:
+* Bug fixes.
+* HTML documents are returned.
+
 New in 3.00:
 * chklinks follows robots.txt rules now.  If you disallow robots from your
   website and experience problems, you need to allow chklinks.  Add the
@@ -12,7 +16,7 @@ New in 3.00:
 * Cookies are supported now.
 
 New in 2.02:
-* The default changed from onelevel to recursive.  This is more
+* The default changed from one-level to recursive.  This is more
   desirable in most cases.
 
 New in 2.01:
