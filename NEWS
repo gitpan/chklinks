@@ -1,3 +1,7 @@
+New in 3.02:
+* Digital signature corrected.
+* Fixes in HTML document.
+
 New in 3.01:
 * Bug fixes.
 * HTML documents are returned.

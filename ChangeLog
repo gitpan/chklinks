@@ -1,5 +1,9 @@
 chklinks change log
 
+2006-06-01	version 3.02
+	 1. SIGNATURE: Fixed.  Added the missing META.yml.
+	 2. Fixes in HTML documents.
+
 2006-05-31	version 3.01
 	 1. HTML documents were missing in version 3.00.  I have put them
 	    back.  I have also made a lot of changes, including Web

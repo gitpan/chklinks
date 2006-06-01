@@ -63,7 +63,7 @@ sub rep_uri($);
 use vars qw($THIS_FILE $VERSION);
 $0 =~ /[^\/]*$/;
 $THIS_FILE = $&;
-$VERSION = "3.01";
+$VERSION = "3.02";
 
 use vars qw(%UA %TARGETS %URIS %REFS $COOKIE_JAR);
 use vars qw($LOCAL_TARGET @LOCALS %LFOUND $STARTDIR @REMOTES %RFOUND);
