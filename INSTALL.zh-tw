@@ -1,12 +1,14 @@
 chklinks 安裝指南
 
-目錄
+◎目錄
 
 　◎系統需求
 　◎安裝指南
+　　◎◎以 ExtUtils::MakeMaker 安裝
+　　◎◎以 Module::Build 安裝
 
 
-系統需求
+◎系統需求
 
    1. Perl 5.6 或以上。我還沒有在更早的版本上成功執行過。若妳可以在更
 早的版本上執行，請告訴我。你可以輸入 perl -v 查詢你目前的 Perl 版本。
@@ -36,33 +38,56 @@ LWP::RobotUA 。 HTML::LinkExtor 為 HTML-Parser 中的模組， LWP::RobotUA
       若沒有上列 Perl 模組，請到 CPAN 程式庫 下載安裝。
 
 
-安裝指南
+◎安裝指南
 
-　　reslog 採用 Perl 標準的 ExtUtils::MakeMaker 安裝，程序如下：
+◎◎以 ExtUtils::MakeMaker 安裝
+
+　　chklinks 用 Perl 標準的 ExtUtils::MakeMaker 安裝，程序如下：
 
     % perl Makefile.PL
     % make
     % make test
     % make install
 
-　　在 make install 前，請先確認你有在安裝目錄存檔的權限。通常這時後都
-要切到 root ，才能安裝存檔。
+　　在 make install 前，請先確認你有在安裝目錄存檔的權限。通常這時候
+要切換為 root ，才能安裝存檔。
 
 　　若你是用 MSWin32 下的 ActivePerl ， make 請改用 nmake 。 nmake 可
 由微軟的 FTP 站下載：
 
   ftp://ftp.microsoft.com/Softlib/MSLFILES/nmake15.exe
 
-　　若要安裝到其它地方，請設定好 PREFIX 。例如，一個一般使用者，要安裝在自己的
-目錄下時：
+　　若要安裝到其它地方，請設定好 PREFIX 。例如，一般使用者，要安裝在
+自己的目錄下時：
 
   % perl Makefile.PL PREFIX=/home/jessica
 
-　　要知道更多安裝選項的細節，請參閱 ExtUtils::MakeMaker 的說明（請執行
-perldoc ExtUtils::MakeMaker ）。
+　　要知道更多安裝選項的細節，請參閱 ExtUtils::MakeMaker 的說明（請執
+行 perldoc ExtUtils::MakeMaker ）。
+
+
+◎◎以 Module::Build 安裝
+
+　　若妳喜歡，也可以用 Module::Build 安裝，程序如下：
+
+    % perl Build.PL
+    % ./Build
+    % ./Build test
+    % ./Build install
+
+　　在 ./Build install 前，請先確認你有在安裝目錄存檔的權限。通常這時
+候要切換為 root ，才能安裝存檔。
+
+　　若要安裝到其它地方，請設定好 --prefix 。例如，一般使用者，要安裝
+在自己的目錄下時：
+
+  % perl Build.PL --prefix=/home/jessica
+
+　　要知道更多安裝選項的細節，請參閱 Module::Build 的說明（請執行
+perldoc Module::Build ）。
 
 
 依瑪貓 imacat ^_*'
-2006-05-31
+2006-06-07
 imacat@mail.imacat.idv.tw
 http://www.imacat.idv.tw/

@@ -1,12 +1,14 @@
 chklinks Installation Guide
 
-Table of Contents
+* Table of Contents
 
    * System Requirements
    * Installation Instruction
+     ** Install with ExtUtils::MakeMaker
+     ** Install with Module::Build
 
 
-System Requirements
+* System Requirements
 
    1. Perl, version 5.6 or above.  I have not successfully run this
 on earlier versions. Please tell me if you can  Perl is distributed
@@ -36,7 +38,9 @@ shall be automatically installed.
 
       This is needed for LWP::RobotUA to support HTTPS.
 
-Installation Instruction
+* Installation Instruction
+
+** Install with ExtUtils::MakeMaker
 
     chklinks uses standard Perl installation with ExtUtils::MakeMaker.
 Follow these steps:
@@ -65,7 +69,31 @@ root:
 installation options (by running perldoc ExtUtils::MakeMaker).
 
 
+** Install with Module::Build
+
+    You can install with Module::Build instead, if you prefer.
+Follow these steps:
+
+    % perl Build.PL
+    % ./Build
+    % ./Build test
+    % ./Build install
+
+    When running ./Build install, make sure you have the priviledge to
+write to the instalation location.  This usually requires the root
+priviledge.
+
+    If you want to install into another location, you can set the
+--prefix.  For example, to install into your home when you are not
+root:
+
+    % perl Build.PL --prefix=/home/jessica
+
+    Refer to the docuemntation of Module::Build for more
+installation options (by running perldoc Module::Build).
+
+
 imacat
-2006-05-30
+2006-06-07
 imacat@mail.imacat.idv.tw
 http://www.imacat.idv.tw/

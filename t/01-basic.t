@@ -21,7 +21,7 @@ use 5.006;
 use strict;
 use Test;
 
-BEGIN { plan tests => 18 }
+BEGIN { plan tests => 20 }
 
 use FindBin;
 use File::Spec::Functions qw(catdir updir);
@@ -81,7 +81,7 @@ eval {
 # 13
 ok($@, "");
 # 14
-ok(scalar(@_), 4);
+ok(scalar(@_), 6);
 # 15
 ok($_, qr/test02.html/);
 # 16
@@ -89,4 +89,8 @@ ok($_, qr/test3.css/);
 # 17
 ok($_, qr/http:\/\/www\.yahoo\.com\/nonexistent/);
 # 18
+ok($_, qr/http:\/\/www\.domain\.invalid\//);
+# 19
 ok($_, qr/ftp:\/\/ftp\.cpan\.org\/nonexistent/);
+# 20
+ok($_, qr/ftp:\/\/ftp\.domain\.invalid\//);

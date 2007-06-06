@@ -1,5 +1,23 @@
 chklinks change log
 
+2007-06-07	version 3.05
+	 1. chklinks: Do not set $parser->utf8_mode(1) in get_links() when
+	    Perl version is earlier than 5.8 where UTF-8 mode is not
+	    available.
+	 2. INSTALL, INSTALL.zh-tw, INSTALL.zh-cn: Added instruction on
+	    installation with Module::Build.
+	 3. INSTALL.zh-tw, INSTALL.zh-cn: Fixed several typos.
+	 4. chklinks.en.html: Added instruction on installation with
+	    Module::Build.
+	 5. chklinks.zh-tw.html, chklinks.zh-cn.html: Added illustration
+	    instruction that was missing previously.
+	 6. t/htdocs/dir01/test01.html: Added http://www.domain.invalid/
+	    and ftp://ftp.domain.invalid/.
+	 7. t/01-basic.t: Added test on http://www.domain.invalid/ and
+	    ftp://ftp.domain.invalid/.
+	 8. t/htdocs/dir01/start.html: Changed to UTF-8, and added an
+	    UTF-8 Chinese paragraph in order to test UTF-8 mode.
+
 2007-06-06	version 3.04
 	Documentation fixes.
 	 1. Changes: Added detailed change log entries about the new Notes

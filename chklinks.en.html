@@ -51,6 +51,11 @@ h2, em {
 
 
 <dl>
+<dt>2007-06-07</dt>
+
+<dd><samp>chklinks</samp> version 3.05 is released.  Fixed problem with <acronym title="Practical Extraction and Reporting Language">Perl</acronym> version earlier than 5.8 where <abbr title="unicode translation format">UTF</abbr>-8 mode is not available.  <a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.05.tar.gz" type="application/x-gzip">Download <samp>chklinks</samp> version 3.05</a>.</dd>
+
+
 <dt>2007-06-06</dt>
 
 <dd><samp>chklinks</samp> version 3.04 is released.  Documentation fixes.  <a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.04.tar.gz" type="application/x-gzip">Download <samp>chklinks</samp> version 3.04</a>.</dd>
@@ -179,6 +184,8 @@ You can always search, download and install the missing <acronym title="Practica
 
 <h2>Install</h2>
 
+<h3>Install with <a href="http://search.cpan.org/dist/ExtUtils-MakeMaker/"><samp>ExtUtils::MakeMaker</samp></a></h3>
+
 <p><samp>chklinks</samp> uses standard <acronym title="Practical Extraction and Reporting Language">Perl</acronym> installation with <a href="http://search.cpan.org/dist/ExtUtils-MakeMaker/"><samp>ExtUtils::MakeMaker</samp></a>.  Follow these steps:</p>
 
 <blockquote><pre>
@@ -188,7 +195,7 @@ You can always search, download and install the missing <acronym title="Practica
 % make install
 </pre></blockquote>
 
-<p>When running <q><samp>make install</samp></q>, make sure you have the priviledge to write to the instalation location.  This usually requires the root priviledge.</p>
+<p>When running <q><samp>make install</samp></q>, make sure you have the priviledge to write to the instalation location.  This usually requires the <samp>root</samp> priviledge.</p>
 
 <p>If you are using ActivePerl under MSWin32, you should use <samp>nmake</samp> instead of <samp>make</samp>.  <a href="ftp://ftp.microsoft.com/Softlib/MSLFILES/nmake15.exe" type="application/x-dosexec"><samp>nmake</samp> can be obtained from the Microsoft <abbr title="File Transfer Protocol">FTP</abbr> site.</a></p>
 
@@ -198,7 +205,29 @@ You can always search, download and install the missing <acronym title="Practica
 % perl Makefile.PL PREFIX=/home/jessica
 </pre></blockquote>
 
-<p>Refer to the docuemntation of <samp>ExtUtils::MakeMaker</samp> for more installation options (by running <q><samp>perldoc ExtUtils::MakeMaker</samp></q>).</p>
+<p>Refer to the docuemntation of <a href="http://search.cpan.org/dist/ExtUtils-MakeMaker/" hreflang="en" xml:lang="en"><samp>ExtUtils::MakeMaker</samp></a> for more installation options (by running <q><samp>perldoc ExtUtils::MakeMaker</samp></q>).</p>
+
+
+<h3>Install with <a href="http://search.cpan.org/dist/Module-Build/"><samp>Module::Build</samp></a></h3>
+
+<p>You can install with <a href="http://search.cpan.org/dist/Module-Build/"><samp>Module::Build</samp></a> instead, if you prefer.  Follow these steps:</p>
+
+<blockquote><pre>
+% perl Build.PL
+% ./Build
+% ./Build test
+% ./Build install
+</pre></blockquote>
+
+<p>When running <q><samp>./Build install</samp></q>, make sure you have the priviledge to write to the instalation location.  This usually requires the <samp>root</samp> priviledge.</p>
+
+<p>If you want to install into another location, you can set the <samp>--prefix</samp>.  For example, to install into your home when you are not <samp>root</samp>:</p>
+
+<blockquote><pre>
+% perl Build.PL --prefix=/home/jessica
+</pre></blockquote>
+
+<p>Refer to the docuemntation of <a href="http://search.cpan.org/dist/Module-Build/"><samp>Module::Build</samp></a> for more installation options (by running <q><samp>perldoc Module::Build</samp></q>).</p>
 
 
 <h2>Options</h2>
@@ -336,7 +365,7 @@ You can always search, download and install the missing <acronym title="Practica
 
 
 <hr />
-<address>By <a href="mailto:imacat&#64;mail.imacat.idv.tw">imacat</a>, first version 2003-05-25, last updated 2007-06-06</address>
+<address>By <a href="mailto:imacat&#64;mail.imacat.idv.tw">imacat</a>, first version 2003-05-25, last updated 2007-06-07</address>
 
 <address>Copyright &copy; 2003-2007 imacat.  Please read the <a href="fdl.txt">copyright</a> before copying.</address>
 

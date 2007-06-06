@@ -53,6 +53,11 @@ q {
 <h2>最新消息</h2>
 
 <dl>
+<dt>2007-06-07</dt>
+
+<dd><samp xml:lang="en">chklinks</samp> 最新版本 3.05 ，修正 <acronym title="Practical Extraction and Reporting Language">Perl</acronym> 5.8 版以前無 <abbr title="unicode translation format">UTF</abbr>-8 模式的問題。<a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.05.tar.gz" type="application/x-gzip">下載 <samp>chklinks</samp> 3.05 版</a>。</dd>
+
+
 <dt>2007-06-06</dt>
 
 <dd><samp xml:lang="en">chklinks</samp> 最新版本 3.04 ，修正說明文件。<a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.04.tar.gz" type="application/x-gzip">下載 <samp>chklinks</samp> 3.04 版</a>。</dd>
@@ -176,6 +181,55 @@ Disallow:
 <li><a href="http://chklinks.sourceforge.net/pgpkey.asc" type="application/pgp-keys"><samp xml:lang="en">chklinks</samp> <span xml:lang="en">SourceForge</span> 網站上的依瑪貓 <abbr title="Pretty Good Privacy" xml:lang="en">PGP</abbr> 公鑰</a>。</li>
 <li><a href="http://www.imacat.idv.tw/me/pgpkey.asc" type="application/pgp-keys">旅舍依瑪上的依瑪貓 <abbr title="Pretty Good Privacy" xml:lang="en">PGP</abbr> 公鑰</a>。</li>
 </ul>
+
+
+<h2>安裝</h2>
+
+<h3>以 <a href="http://search.cpan.org/dist/ExtUtils-MakeMaker/" hreflang="en" xml:lang="en"><samp>ExtUtils::MakeMaker</samp></a> 安裝</h3>
+
+<p><samp>chklinks</samp> 用 <acronym title="Practical Extraction and Reporting Language">Perl</acronym> 標準的 <a href="http://search.cpan.org/dist/ExtUtils-MakeMaker/" hreflang="en" xml:lang="en"><samp>ExtUtils::MakeMaker</samp></a> 安裝，程序如下：</p>
+
+<blockquote><pre>
+% perl Makefile.PL
+% make
+% make test
+% make install
+</pre></blockquote>
+
+<p>在 <q><samp>make install</samp></q> 前，請先確認你有在安裝目錄存檔的權限。通常這時候要切換為 <samp>root</samp> ，才能安裝存檔。</p>
+
+<p>若你是用 MSWin32 下的 ActivePerl ， <samp>make</samp> 請改用 <samp>nmake</samp> 。 <a href="ftp://ftp.microsoft.com/Softlib/MSLFILES/nmake15.exe" type="application/x-dosexec"><samp>nmake</samp> 可
+由微軟的 <abbr title="File Transfer Protocol">FTP</abbr> 站下載</a>。</p>
+
+<p>若要安裝到其它地方，請設定好 <samp>PREFIX</samp> 。例如，一般使用者，要安裝在自己的目錄下時：</p>
+
+<blockquote><pre>
+% perl Makefile.PL PREFIX=/home/jessica
+</pre></blockquote>
+
+<p>要知道更多安裝選項的細節，請參閱 <a href="http://search.cpan.org/dist/ExtUtils-MakeMaker/" hreflang="en" xml:lang="en"><samp>ExtUtils::MakeMaker</samp></a> 的說明（請執行 <q><samp>perldoc ExtUtils::MakeMaker</samp></q> ）。</p>
+
+
+<h3>以 <a href="http://search.cpan.org/dist/Module-Build/" hreflang="en" xml:lang="en"><samp>Module::Build</samp></a> 安裝</h3>
+
+<p>若妳喜歡，也可以用 <a href="http://search.cpan.org/dist/Module-Build/" hreflang="en" xml:lang="en"><samp>Module::Build</samp></a> 安裝，程序如下：</p>
+
+<blockquote><pre>
+% perl Build.PL
+% ./Build
+% ./Build test
+% ./Build install
+</pre></blockquote>
+
+<p>在 <q><samp>./Build install</samp></q> 前，請先確認你有在安裝目錄存檔的權限。通常這時候要切換為 <samp>root</samp> ，才能安裝存檔。</p>
+
+<p>若要安裝到其它地方，請設定好 <samp>--prefix</samp> 。例如，一般使用者，要安裝在自己的目錄下時：</p>
+
+<blockquote><pre>
+% perl Build.PL --prefix=/home/jessica
+</pre></blockquote>
+
+<p>要知道更多安裝選項的細節，請參閱 <a href="http://search.cpan.org/dist/Module-Build/" hreflang="en" xml:lang="en"><samp>Module::Build</samp></a> 的說明（請執行 <q><samp>perldoc Module::Build</samp></q> ）。</p>
 
 
 <h2>命令列參數</h2>
@@ -312,7 +366,7 @@ Disallow:
 
 
 <hr />
-<address><a href="mailto:imacat&#64;mail.imacat.idv.tw">依瑪貓</a>，初稿 2003-05-25 ，上次更新日期 2007-06-06</address>
+<address><a href="mailto:imacat&#64;mail.imacat.idv.tw">依瑪貓</a>，初稿 2003-05-25 ，上次更新日期 2007-06-07</address>
 
 <address>版權所有 &copy; 2003-2007 依瑪貓，欲轉載引用請先閱讀<a href="fdl.txt">版權聲明</a></address>
 

@@ -64,7 +64,7 @@ sub rep_uri($);
 
 use vars qw($THIS_FILE $VERSION $VERBOSE);
 $THIS_FILE = basename($0);
-$VERSION = "3.04";
+$VERSION = "3.05";
 $VERBOSE = 1;
 
 use vars qw(@STARTS $RECURSIVE $PARENT $NOREMOTE @EXCLUDES);
@@ -478,7 +478,7 @@ sub get_links($$) {
     ($html, $base) = @_;
     
     $parser = new HTML::LinkExtor;
-    $parser->utf8_mode(1) if $HTML::Parser::VERSION >= 3.40;
+    $parser->utf8_mode(1) if $] >= 5.008 && $HTML::Parser::VERSION >= 3.40;
     $parser->parse($html);
     @_ = qw();
     foreach my $link ($parser->links) {
