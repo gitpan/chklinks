@@ -1,11 +1,26 @@
 chklinks change log
 
+2007-06-06	version 3.04
+	Documentation fixes.
+	 1. Changes: Added detailed change log entries about the new Notes
+	    chapter of the POD document.
+	 2. chklinks.en.html: Fixed an unencoded <p> in the HTML.
+	 3. chklinks.zh-tw.html: Removed the extra white space in the front
+	    of the news text.
+	 4. chklinks.en.html, chklinks.zh-tw.html, chklinks.zh-cn.html: Added
+	    Module::Build support to 3.03 news text.
+
 2007-06-06	version 3.03
-	 1. chklinks: Added "$parser->utf8_mode(1);" in get_links($$), to
+	 1. chklinks: Added "$parser->utf8_mode(1);" in get_links(), to
 	    fix the HTML::Parser raw UTF-8 warning when extracting links from
 	    UTF-8 HTML content with HTML::Parser version >= 3.40.  Thanks
 	    to nsnake <loveme1314@gmail.com> for reporting this problem.
-	 2. Build.PL: added.
+	 2. Build.PL: Added, to support building with Module::Build.
+	 3. chklinks: Added a new chapter "Notes" in the POD document.  Moved
+	    the illustration on Crawl-delay: from the Bugs chapter to the
+	    Notes chapter of the POD document.
+	 4. chklinks: Added illustration of CPAN RT Bug#20274 on LWP::Protocol
+	    with HTML::Parser 3.40+ to the Notes chapter of the POD document.
 
 2006-07-20
 	 1. chklinks: Replaced getlogin() with getpwuid().  getlogin() many

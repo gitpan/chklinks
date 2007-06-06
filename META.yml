@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                chklinks
-version:             3.03
+version:             3.04
 abstract:            A non-threaded perl link checker
 license:             gpl
 generated_by:        ExtUtils::MakeMaker version 6.32
