@@ -8,3 +8,7 @@ to test on different platforms.
     Thanks to Stefan Seifert <stefan.seifert@atikon.com> for pointing
 out redirection loops problem when cookies are not activated.
 (2005-11-07)
+
+    Thanks to nsnake <loveme1314@gmail.com> for reporting warnings
+from HTML::Parser version >= 3.40 when checking UTF-8 pages.
+(2007-06-06)

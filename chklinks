@@ -1,7 +1,7 @@
 #! /usr/bin/perl -w
-# A non-threaded perl link checker
+# chklinks: A non-threaded perl link checker
 
-# Copyright (c) 2003-2006 imacat.
+# Copyright (c) 2003-2007 imacat.
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# 版權所有 (c) 2003-2006 依瑪貓
+# 版權所有 (c) 2003-2007 依瑪貓
 # 
 # 本程式是自由軟體，您可以遵照自由軟體基金會（ Free Software Foundation
 # ）出版的 GNU 通用公共許可證條款（ GNU General Public License ）第二版
@@ -30,12 +30,14 @@
 # 信給： Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 
-# First written 2003-04-12
+# First written: 2003-04-12
 
-use 5.006;
+use 5.6.0;
 use strict;
+use warnings;
 use Config qw();
 use Cwd qw(getcwd);
+use File::Basename qw(basename);
 use File::Spec qw();
 use Getopt::Long qw(GetOptions);
 use HTML::LinkExtor qw();
@@ -60,34 +62,32 @@ sub get_target($);
 sub noreq_key($);
 sub rep_uri($);
 
-use vars qw($THIS_FILE $VERSION);
-$0 =~ /[^\/]*$/;
-$THIS_FILE = $&;
-$VERSION = "3.02";
+use vars qw($THIS_FILE $VERSION $VERBOSE);
+$THIS_FILE = basename($0);
+$VERSION = "3.03";
+$VERBOSE = 1;
 
-use vars qw(%UA %TARGETS %URIS %REFS $COOKIE_JAR);
+use vars qw(@STARTS $RECURSIVE $PARENT $NOREMOTE @EXCLUDES);
+use vars qw($UASTR %UA %TARGETS %URIS %REFS $COOKIE_JAR);
 use vars qw($LOCAL_TARGET @LOCALS %LFOUND $STARTDIR @REMOTES %RFOUND);
-use vars qw($TOTAL $SUCCESS);
-use vars qw(%NOREQ_HOSTS);
+use vars qw($TOTAL $SUCCESS %NOREQ_HOSTS %ALLOWED_SCHEMES);
+$UASTR = "$THIS_FILE-robot/$VERSION (using " . (LWP::RobotUA->can("_agent")?
+    LWP::RobotUA->_agent: "libwww-perl/" . $LWP::VERSION) . ")";
 %UA = qw();
 %TARGETS = qw();
 %URIS = qw();
 %REFS = qw();
-%NOREQ_HOSTS = qw();
 $COOKIE_JAR = new HTTP::Cookies;
-
-use vars qw($RECURSIVE $PARENT $NOREMOTE @EXCLUDES $VERBOSE);
+%NOREQ_HOSTS = qw();
 $RECURSIVE = 1;
 $PARENT = 0;
 $NOREMOTE = 0;
 @EXCLUDES = qw();
-$VERBOSE = 1;
+%ALLOWED_SCHEMES = map { $_ => 1 } qw(http https ftp file gopher);
 
-use vars qw($UASTR $VERSTR $SHORTHELP $HELPMSG);
-$UASTR = "$THIS_FILE-robot/$VERSION (using " . (LWP::RobotUA->can("_agent")?
-    LWP::RobotUA->_agent: "libwww-perl/" . $LWP::VERSION) . ")";
+use vars qw($VERMSG $SHORTHELP $HELPMSG);
+$VERMSG = "$THIS_FILE v$VERSION by imacat <imacat\@mail.imacat.idv.tw>";
 $SHORTHELP = "Try `$THIS_FILE --help' for more information.";
-$VERSTR = "$& v$VERSION by imacat <imacat\@mail.imacat.idv.tw>";
 $HELPMSG = << "EOT";
 Usage: $THIS_FILE [options] url1 [url2 [url3 ...]]
 Check links on the specific website.
@@ -109,24 +109,22 @@ Check links on the specific website.
                      effect of --debug.
   -h,--help          Display this help.
   -v,--version       Display version number.
-  url1, url2, url3   The URLs of the websites to check against.
+  url1,url2...       The URLs of the websites to check against.
 
 EOT
-
-use vars qw(%ALLOWED_SCHEMES);
-%ALLOWED_SCHEMES = map { $_ => 1 } qw(http https ftp file gopher);
 
 main;
 exit 0;
 
-
 # main: Main program
 sub main() {
     local ($_, %_);
-    my @starts;
     
-    @starts = parse_args;
-    check_links $_ foreach @starts;
+    # Parse the arguments
+    parse_args;
+    
+    # Check each URL
+    check_links $_ foreach @STARTS;
     
     print STDERR "Done.  " . (time - $^T) . " seconds elapsed.\n"
         if $VERBOSE > 0;
@@ -135,8 +133,7 @@ sub main() {
 
 # parse_args: Parse the arguments
 sub parse_args() {
-    local $_;
-    my @starts;
+    local ($_, %_);
     
     # Get the arguments
     eval {
@@ -150,19 +147,22 @@ sub parse_args() {
                     "span|s"=>sub { $NOREMOTE = 0; },
                     "exclude|e=s"=>sub { unshift @EXCLUDES, "-" . $_[1]; },
                     "include|i=s"=>sub { unshift @EXCLUDES, "+" . $_[1]; },
-                    "debug|d"=>sub { $VERBOSE++; },
+                    "debug|d+"=>\$VERBOSE,
                     "quiet|q"=>sub { $VERBOSE-- if $VERBOSE > 0; },
                     "help|h"=>sub { print $HELPMSG; exit 0; },
-                    "version|v"=>sub { print "$VERSTR\n"; exit 0; });
+                    "version|v"=>sub { print "$VERMSG\n"; exit 0; });
     };
-    die "$THIS_FILE: ERROR: $@" if $@ ne "";
+    die "$THIS_FILE: $@$SHORTHELP\n" if $@ ne "";
     
     # Show progress
     $| = 1 if $VERBOSE > 2;
     
-    @starts = qw();
-    foreach my $uritext (@ARGV) {
-        my $uri;
+    # Check the arguments
+    # Arguments are URLs
+    @STARTS = qw();
+    while (@ARGV > 0) {
+        my ($uri, $uritext);
+        $uritext = shift @ARGV;
         $uri = new URI($uritext);
         # Single letter scheme is assumed to be a volumn label
         # This is for MSWin32
@@ -221,13 +221,12 @@ sub parse_args() {
             next;
         }
         $URIS{$uri->as_string} = $uri;
-        push @starts, $uri->as_string;
+        push @STARTS, $uri->as_string;
     }
+    die "$THIS_FILE: Please specify the URL to check\n$SHORTHELP\n"
+        if @STARTS == 0;
     
-    die "$THIS_FILE: ERROR: Please specify the URL to check\n"
-        if @starts == 0;
-    
-    return @starts;
+    return;
 }
 
 # check_links: Check links from an URL
@@ -479,6 +478,7 @@ sub get_links($$) {
     ($html, $base) = @_;
     
     $parser = new HTML::LinkExtor;
+    $parser->utf8_mode(1) if $HTML::Parser::VERSION >= 3.40;
     $parser->parse($html);
     @_ = qw();
     foreach my $link ($parser->links) {
@@ -590,7 +590,7 @@ sub get_ua($) {
     # Create a new user agent
     $UA{$_} = new LWP::RobotUA(
         "agent"         => $UASTR,
-        "from"          => getlogin . "@" . hostname,
+        "from"          => (getpwuid($>) or $>) . "@" . hostname,
         "keep_alive"    => 1,
         "cookie_jar"    => $COOKIE_JAR,
     );
@@ -770,6 +770,22 @@ The URLs of the websites to check against.
 
 =back
 
+=head1 NOTES
+
+F<chklinks> does not obey C<Crawl-delay:> in F<robots.txt> yet.
+This is a problem in L<WWW::RobotRules(3)|WWW::RobotRules/3>, but
+not F<chklinks> itself.
+
+If you encounter warnings like this:
+
+    Parsing of undecoded UTF-8 will give garbage when decoding
+    entities at /usr/share/perl5/LWP/Protocol.pm line 114.
+
+This is a L<LWP::Protocol(3)|LWP::Protocol/3> issue when working
+with L<HTML::Parser(3)|HTML::Parser/3> version >= 3.40.
+See CPAN RT Bug#20274 http://rt.cpan.org/Public/Bug/Display.html?id=20274
+for a L<LWP::Protocol(3)|LWP::Protocol/3> patch on this.
+
 =head1 BUGS
 
 F<chklinks> does not support authentication yet.  W3C-LinkChecker
@@ -786,10 +802,6 @@ have support on this.
 
 Local file checking has only been tested on Unix and MSWin32.  More
 platforms should be tested, especially VMS and Mac.
-
-F<chklinks> does not obey C<Crawl-delay:> in F<robots.txt> yet.
-This is a problem in L<WWW::RobotRules(3)|WWW::RobotRules/3>, but
-not F<chklinks> itself.
 
 =head1 SUPPORT
 
@@ -821,7 +833,7 @@ imacat <imacat@mail.imacat.idv.tw>.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2003-2006 imacat.
+Copyright (c) 2003-2007 imacat.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

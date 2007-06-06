@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta name="author" content="imacat" />
-<meta name="copyright" content="&copy; 2003-2006 imacat." />
+<meta name="copyright" content="&copy; 2003-2007 imacat." />
 <meta name="keywords" content="link checker, broken links" />
 <link href="fdl.txt" rel="copyright" type="text/html" />
 <link title="&#32321;&#39636;&#20013;&#25991;" type="text/html" rel="alternate"
@@ -51,6 +51,11 @@ h2, em {
 
 
 <dl>
+<dt>2007-06-06</dt>
+
+<dd><samp>chklinks</samp> version 3.03 is released.  Fixed the raw UTF-8 warning with <a href="http://search.cpan.org/dist/HTML-Parser/"><samp>HTML::Parser</samp></a>.  <a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.03.tar.gz" type="application/x-gzip">Download <samp>chklinks</samp> version 3.03</a>.</dd>
+
+
 <dt>2006-06-02</dt>
 
 <dd><samp>chklinks</samp> version 3.02 is released.  The digital signature is corrected.  <a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.02.tar.gz" type="application/x-gzip">Download <samp>chklinks</samp> version 3.02</a>.</dd>
@@ -266,6 +271,19 @@ You can always search, download and install the missing <acronym title="Practica
 </dl>
 
 
+<h2>Notes</h2>
+
+<p><samp>chklinks</samp> does not obey <a href="http://help.yahoo.com/help/us/ysearch/slurp/slurp-03.html"><samp>Crawl-delay:</samp></a> in <samp>robots.txt</samp> yet.  This is a problem in <a href="http://search.cpan.org/dist/libwww-perl/">WWW::RobotRules</a>, but not <samp>chklinks</samp> itself.</p>
+
+<p>If you encounter warnings like this:</p>
+
+<blockquote>
+<pre>Parsing of undecoded UTF-8 will give garbage when decoding entities at /usr/share/perl5/LWP/Protocol.pm line 114.</pre>
+</blockquote>
+
+<p>This is a <a href="http://search.cpan.org/dist/libwww-perl/"><samp>LWP::Protocol</samp></a> issue when working with <a href="http://search.cpan.org/dist/HTML-Parser/"><samp>HTML::Parser</samp></a> version &ge; 3.40.  See <a href="http://rt.cpan.org/Public/Bug/Display.html?id=20274"><acronym title="Comprehensive Perl Archive Network">CPAN</acronym> RT Bug#20274</a> for a <a href="http://search.cpan.org/dist/libwww-perl/"><samp>LWP::Protocol</samp></a> patch on this.
+
+
 <h2>Bugs</h2>
 
 <p><samp>chklinks</samp> does not support authentication yet.  <a href="http://validator.w3.org/checklink">W3C-LinkChecker</a> have support on this.  As a workaround, You can use the syntax <samp>http://user:pass&#64;some.where.com/some/path</samp> for Basic Authentication, but this does not work on Digest Authentication.  <em>This practice is not encouraged.</em>  Your password would be visable to anyone on this system using <samp>ps</samp>, including hidden intruders.  Also what you type in your shell will be saved to your shell history file.</p>
@@ -273,8 +291,6 @@ You can always search, download and install the missing <acronym title="Practica
 <p><samp>mailto:</samp> <abbr title="Uniform Resource Locator">URL</abbr>s should be supported by checking the validity of its <abbr title="domain name system">DNS</abbr>/<abbr title="mail exchange">MX</abbr> record.  Bastian Kleineidam&rsquo;s <a href="http://linkchecker.sourceforge.net/"><samp>linkchecker</samp></a> have support on this.</p>
 
 <p>Local file checking has only been tested on Unix and MSWin32.  More platforms should be tested, especially <abbr title="Virtual Memory System">VMS</abbr> and Mac.</p>
-
-<p><samp>chklinks</samp> does not obey <a href="http://help.yahoo.com/help/us/ysearch/slurp/slurp-03.html"><samp>Crawl-delay:</samp></a> in <samp>robots.txt</samp> yet.  This is a problem in <a href="http://search.cpan.org/dist/libwww-perl/">WWW::RobotRules</a>, but not <samp>chklinks</samp> itself.</p>
 
 
 <h2>Support</h2>
@@ -303,7 +319,7 @@ You can always search, download and install the missing <acronym title="Practica
 
 <h2>Copyright</h2>
 
-<p>Copyright &copy; 2003-2006 imacat. All rights reserved.</p>
+<p>Copyright &copy; 2003-2007 imacat. All rights reserved.</p>
 
 <p>This program is free software; you can redistribute it and/or modify it under the terms of the <cite><acronym title="GNU&rsquo;s Not UNIX">GNU</acronym> General Public License</cite> as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
 
@@ -315,9 +331,9 @@ You can always search, download and install the missing <acronym title="Practica
 
 
 <hr />
-<address>By <a href="mailto:imacat&#64;mail.imacat.idv.tw">imacat</a>, first version 2003-05-25, last updated 2006-06-02</address>
+<address>By <a href="mailto:imacat&#64;mail.imacat.idv.tw">imacat</a>, first version 2003-05-25, last updated 2007-06-06</address>
 
-<address>Copyright &copy; 2003-2006 imacat.  Please read the <a href="fdl.txt">copyright</a> before copying.</address>
+<address>Copyright &copy; 2003-2007 imacat.  Please read the <a href="fdl.txt">copyright</a> before copying.</address>
 
 </body>
 </html>

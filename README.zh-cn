@@ -1,6 +1,6 @@
 chklinks - 单执行绪的 Perl 连结检查程式。
 
-  版权所有 (c) 2003-2006 依玛猫
+  版权所有 (c) 2003-2007 依玛猫
   
   本程式是自由软体，您可以遵照自由软体基金会（ Free Software Foundation
   ）出版的 GNU 通用公共许可证条款（ GNU General Public License ）第二版
@@ -34,6 +34,16 @@ https 通讯协定，需先安装 Crypt::SSLeay 。这是 LWP::RobotUA 的需求。）
     chklinks 支援网站的 Cookies 。
 
 　　请详阅 INSTALL.zh-tw 档案的安装指南。
+
+　　若出现以下警告：
+
+      Parsing of undecoded UTF-8 will give garbage when decoding
+      entities at /usr/share/perl5/LWP/Protocol.pm line 114.
+
+　　这是 LWP::Protocol 用新版 HTML::Parser 3.40 版以上时产生的问题。请
+参阅 CPAN rt Bug#20274 报告
+http://rt.cpan.org/Public/Bug/Display.html?id=20274 ，取得
+LWP::Protocol 的修补程式。
 
     chklinks 网站架在 SourceForge 、 CPAN 与 旅舍依玛。索取最新资讯，
 请驾临：

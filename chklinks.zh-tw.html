@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta name="author" content="依瑪貓" />
-<meta name="copyright" content="&copy; 2003-2006 依瑪貓。" />
+<meta name="copyright" content="&copy; 2003-2007 依瑪貓。" />
 <meta name="keywords" content="網站超連結檢查程式" />
 <link href="fdl.txt" rel="copyright" type="text/html" />
 <link title="&#31616;体中文" type="text/html" rel="alternate"
@@ -53,6 +53,11 @@ q {
 <h2>最新消息</h2>
 
 <dl>
+<dt>2007-06-06</dt>
+
+<dd><samp xml:lang="en">chklinks</samp> 最新版本 3.03 ，修正 <a href="http://search.cpan.org/dist/HTML-Parser/"><samp>HTML::Parser</samp></a> 的原始 UTF-8 警告訊息。<a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.03.tar.gz" type="application/x-gzip">下載 <samp>chklinks</samp> 3.03 版</a>。</dd>
+
+
 <dt>2006-06-02</dt>
 
 <dd><samp xml:lang="en">chklinks</samp> 最新版本 3.02 ，更正錯誤的數位簽章。<a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.02.tar.gz" type="application/x-gzip">下載 <samp>chklinks</samp> 3.02 版</a>。</dd>
@@ -242,6 +247,19 @@ Disallow:
 </dl>
 
 
+<h2>注意事項</h2>
+
+<p><samp xml:lang="en">chklinks</samp> 尚未遵守 <samp xml:lang="en">robots.txt</samp> 的 <a href="http://help.yahoo.com/help/us/ysearch/slurp/slurp-03.html" hreflang="en" xml:lang="en"><samp>Crawl-delay:</samp></a> 規則。不過這是 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en">WWW::RobotRules</a> 的問題，不是 <samp xml:lang="en">chklinks</samp> 的問題。</p>
+
+<p>若出現以下警告：</p>
+
+<blockquote>
+<pre>Parsing of undecoded UTF-8 will give garbage when decoding entities at /usr/share/perl5/LWP/Protocol.pm line 114.</pre>
+</blockquote>
+
+ <p>這是 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 用新版 <a href="http://search.cpan.org/dist/HTML-Parser/" hreflang="en" xml:lang="en"><samp>HTML::Parser</samp></a> 3.40 版以上時產生的問題。請參閱 <a href="http://rt.cpan.org/Public/Bug/Display.html?id=20274" hreflang="en" xml:lang="en"><acronym title="Comprehensive Perl Archive Network">CPAN</acronym> RT Bug#20274 報告</a>，取得 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 的修補程式。</p>
+
+
 <h2>已知問題</h2>
 
 <p><samp xml:lang="en">chklinks</samp> 還不支援登入帳號密碼的功能。 <a href="http://validator.w3.org/checklink" hreflang="en" xml:lang="en">W3C-LinkChecker</a> 有支援這個功能。若不是 <span xml:lang="en">Digest</span> 登入，只是 <span xml:lang="en">Basic</span> 登入，妳可以先用像是 <samp xml:lang="en">http://user:pass&#64;some.where.com/some/path</samp> 的語法登入。不過<em>請不要這樣做</em>。任何人只要用 <samp xml:lang="en">ps</samp> 指令，就看得到密碼。如果這時候系統有入侵者偷偷溜進來，也可以看得到。而且這樣寫在指令中的密碼，也會存在妳的指令記錄檔中。</p>
@@ -249,8 +267,6 @@ Disallow:
 <p>應該可以支援 <samp xml:lang="en">mailto:</samp> 的網址，檢查其 <abbr title="domain name system" xml:lang="en">DNS</abbr>/<abbr title="mail exchange" xml:lang="en">MX</abbr> 是否可用。 <span xml:lang="en">Bastian Kleineidam</span> 的 <a href="http://linkchecker.sourceforge.net/" hreflang="en" xml:lang="en"><samp>linkchecker</samp></a> 有支援這個功能。</p>
 
 <p>一般檔案的支援目前只在 <span xml:lang="en">Unix</span> 和 <span xml:lang="en">MSWin32</span> 上測試過，還需要在其它作業系統如 <abbr title="Virtual Memory System" xml:lang="en">VMS</abbr> 及 <span xml:lang="en">Mac</span> 上測試能不能運作。</p>
-
-<p><samp xml:lang="en">chklinks</samp> 尚未遵守 <samp xml:lang="en">robots.txt</samp> 的 <a href="http://help.yahoo.com/help/us/ysearch/slurp/slurp-03.html" hreflang="en" xml:lang="en"><samp>Crawl-delay:</samp></a> 規則。不過這是 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en">WWW::RobotRules</a> 的問題，不是 <samp xml:lang="en">chklinks</samp> 的問題。</p>
 
 
 <h2>支援協助</h2>
@@ -279,7 +295,7 @@ Disallow:
 
 <h2>版權聲明</h2>
 
-<p>版權所有 &copy; 2003-2006 依瑪貓。</p>
+<p>版權所有 &copy; 2003-2007 依瑪貓。</p>
 
 <p>本程式是自由軟體，您可以遵照自由軟體基金會 <span xml:lang="en">(Free Software Foundation)</span> 出版的 <cite><acronym title="GNU's Not UNIX" xml:lang="en">GNU</acronym> 通用公共許可證</cite>條款 <span xml:lang="en">(<cite><acronym title="GNU's Not UNIX">GNU</acronym> General Public License</cite>)</span> 第二版來修改和重新發佈這一程式，或者自由選擇使用任何更新的版本。</p>
 
@@ -291,9 +307,9 @@ Disallow:
 
 
 <hr />
-<address><a href="mailto:imacat&#64;mail.imacat.idv.tw">依瑪貓</a>，初稿 2003-05-25 ，上次更新日期 2006-06-02</address>
+<address><a href="mailto:imacat&#64;mail.imacat.idv.tw">依瑪貓</a>，初稿 2003-05-25 ，上次更新日期 2007-06-06</address>
 
-<address>版權所有 &copy; 2003-2006 依瑪貓，欲轉載引用請先閱讀<a href="fdl.txt">版權聲明</a></address>
+<address>版權所有 &copy; 2003-2007 依瑪貓，欲轉載引用請先閱讀<a href="fdl.txt">版權聲明</a></address>
 
 </body>
 </html>

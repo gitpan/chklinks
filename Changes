@@ -1,5 +1,22 @@
 chklinks change log
 
+2007-06-06	version 3.03
+	 1. chklinks: Added "$parser->utf8_mode(1);" in get_links($$), to
+	    fix the HTML::Parser raw UTF-8 warning when extracting links from
+	    UTF-8 HTML content with HTML::Parser version >= 3.40.  Thanks
+	    to nsnake <loveme1314@gmail.com> for reporting this problem.
+	 2. Build.PL: added.
+
+2006-07-20
+	 1. chklinks: Replaced getlogin() with getpwuid().  getlogin() many
+	    not always be available, for example, when running from
+	    crontab.
+
+2006-06-08
+	 1. chklinks: Revised the code with my own coding standard.
+	 2. Changes: ChangeLog renamed to Changes, in order to follow Perl's
+	    convention.
+
 2006-06-01	version 3.02
 	 1. SIGNATURE: Fixed.  Added the missing META.yml.
 	 2. Fixes in HTML documents.
