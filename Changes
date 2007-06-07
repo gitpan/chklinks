@@ -1,5 +1,19 @@
 chklinks change log
 
+2007-06-08	version 3.06
+	Test suite updates
+	 1. t/01-basic.t: Added test 21 to check if we have exhausted all
+	    the results, and remove the found URL after test 15-20, in
+	    order to catch errors in the test suites.
+
+2007-06-07
+	 1. chklinks.en.html, chklinks.zh-tw.html, chklinks.zh-cn.html:
+	    Added missing <samp>...</samp> around WWW::RobotRules in the
+	    Notes chapter.
+	 2. INSTALL: Filled in the missing text in the System Requirements
+	    chapter.
+	 2. chklinks.zh-cn.html: Added blank line in the News chapter.
+
 2007-06-07	version 3.05
 	 1. chklinks: Do not set $parser->utf8_mode(1) in get_links() when
 	    Perl version is earlier than 5.8 where UTF-8 mode is not

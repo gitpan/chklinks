@@ -1,3 +1,6 @@
+New in 3.06:
+* Test suite fixes.
+
 New in 3.05:
 * Fixed problem with Perl version earlier than 5.8 where
   UTF-8 mode is not available.

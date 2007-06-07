@@ -11,7 +11,8 @@ chklinks Installation Guide
 * System Requirements
 
    1. Perl, version 5.6 or above.  I have not successfully run this
-on earlier versions. Please tell me if you can  Perl is distributed
+on earlier versions.  Please tell me if you can.  You can run
+"perl -v" to see your current Perl version.  Perl is distributed
 with most Unix now.  If not, or if you have an older version of Perl,
 you can download and install/upgrade it from Perl website.
 

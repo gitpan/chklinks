@@ -21,7 +21,7 @@ use 5.006;
 use strict;
 use Test;
 
-BEGIN { plan tests => 20 }
+BEGIN { plan tests => 21 }
 
 use FindBin;
 use File::Spec::Functions qw(catdir updir);
@@ -83,14 +83,22 @@ ok($@, "");
 # 14
 ok(scalar(@_), 6);
 # 15
-ok($_, qr/test02.html/);
+ok($_, qr/test02\.html /);
+s/^.*test02.html [^\n]*\n//m;
 # 16
-ok($_, qr/test3.css/);
+ok($_, qr/test3\.css /);
+s/^.*test3.css [^\n]*\n//m;
 # 17
-ok($_, qr/http:\/\/www\.yahoo\.com\/nonexistent/);
+ok($_, qr/^http:\/\/www\.yahoo\.com\/nonexistent /m);
+s/^http:\/\/www\.yahoo\.com\/nonexistent [^\n]*\n//m;
 # 18
-ok($_, qr/http:\/\/www\.domain\.invalid\//);
+ok($_, qr/^http:\/\/www\.domain\.invalid\/ /m);
+s/^http:\/\/www\.domain\.invalid\/ [^\n]*\n//m;
 # 19
-ok($_, qr/ftp:\/\/ftp\.cpan\.org\/nonexistent/);
+ok($_, qr/^ftp:\/\/ftp\.cpan\.org\/nonexistent /m);
+s/^ftp:\/\/ftp\.cpan\.org\/nonexistent [^\n]*\n//m;
 # 20
-ok($_, qr/ftp:\/\/ftp\.domain\.invalid\//);
+ok($_, qr/^ftp:\/\/ftp\.domain\.invalid\/ /m);
+s/^ftp:\/\/ftp\.domain\.invalid\/ [^\n]*\n//m;
+# 21
+ok($_, "");
