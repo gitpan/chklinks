@@ -50,7 +50,7 @@ sub rep_uri($);
 
 use vars qw($THIS_FILE $VERSION $VERBOSE);
 $THIS_FILE = basename($0);
-$VERSION = "3.07";
+$VERSION = "3.08";
 $VERBOSE = 1;
 
 use vars qw(@STARTS $RECURSIVE $PARENT $NOREMOTE @EXCLUDES);

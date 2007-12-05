@@ -12,8 +12,8 @@ chklinks - 单执行绪的 Perl 连结检查程式。
   您应该已经和程式一起收到一份 GNU 通用公共许可证的副本。如果还没有，参
   阅<http://www.gnu.org/licenses/>。
 
-    chklinks 是用 Perl 写的单执行绪连结检查程式，用来检查网站上的超连
-结有没有疏漏。
+    chklinks 是单执行绪的 Perl 连结检查程式，用来检查网站上的超连结有
+没有疏漏。
 
     chklinks 和 linkchecker 不同之处在於，chklinks 不是多执行绪的程式
 。 chklinks 检查时，不会同时启动一大堆连线同步检查，耗尽系统资源，导致
@@ -39,8 +39,11 @@ https 通讯协定，需先安装 Crypt::SSLeay 。这是 LWP::RobotUA 的需求。）
       Parsing of undecoded UTF-8 will give garbage when decoding
       entities at /usr/share/perl5/LWP/Protocol.pm line 114.
 
-　　这是 LWP::Protocol 用新版 HTML::Parser 3.40 版以上时产生的问题。请
-参阅 CPAN rt Bug#20274 报告
+　　这是 LWP::Protocol 1.43 版或之前的版本（ libwww-perl 5.805 版或之
+前的版本），碰上 HTML::Parser 3.40 版或之后的版本及 Perl 5.8 版或之后
+的版本时，产生的问题。 LWP::Protocol 1.46 版以后（ libwww-perl 5.806
+版以后），已解决这个问题。请升级到最新版的 LWP::Protocol 。若你因故无
+法升级，请参阅 CPAN RT Bug#20274 报告
 http://rt.cpan.org/Public/Bug/Display.html?id=20274 ，取得
 LWP::Protocol 的修补程式。
 

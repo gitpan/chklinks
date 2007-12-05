@@ -31,7 +31,7 @@ Add the following lines to your robots.txt file to allow chklinks:
       User-agent: chklinks
       Disallow:
 
-    chklinks uses LWP::RobotUA(3) and support the following schemes:
+    chklinks uses LWP::RobotUA and support the following schemes:
 http, https, ftp, gopher, file.  You can also specify a local file.
 (To use https, you need to install Crypt::SSLeay.)
 
@@ -44,10 +44,13 @@ http, https, ftp, gopher, file.  You can also specify a local file.
       Parsing of undecoded UTF-8 will give garbage when decoding
       entities at /usr/share/perl5/LWP/Protocol.pm line 114.
 
-    This is a LWP::Protocol(3) issue when working with
-HTML::Parser(3) version >= 3.40.  See CPAN RT Bug#20274
-http://rt.cpan.org/Public/Bug/Display.html?id=20274 for a
-LWP::Protocol(3) patch on this.
+    This is an issue of LWP::Protocol version <= 1.43 (in libwww-perl
+version <= 5.805) when working with HTML::Parser version >= 3.40 and
+Perl version >= 5.8.  This issue is solved in LWP::Protocol version
+>= 1.46 (in libwww-perl version >= 5.806).  You can upgrade your
+LWP::Protocol to the current version.  If you cannot upgrade it, see
+CPAN RT Bug#20274 http://rt.cpan.org/Public/Bug/Display.html?id=20274
+for an LWP::Protocol patch on this.
 
     chklinks is hosted on SourceForge, CPAN and Tavern IMACAT's.  For
 the latest infomation, see:

@@ -31,7 +31,7 @@ q:lang(en) {
     quotes: "\201C" "\201D" "\2018" "\2019";
 }
 </style>
-<title>chklinks 3.07 版</title>
+<title>chklinks 3.08 版</title>
 </head>
 <body>
 
@@ -51,12 +51,20 @@ q:lang(en) {
 <div class="accessguide"><a accesskey="C"
     href="#body" title="網頁內文區">:::</a></div>
 
-<h1><samp xml:lang="en">chklinks</samp> 3.07 版</h1>
+<h1><samp xml:lang="en">chklinks</samp> 3.08 版</h1>
 
 
 <h2>最新消息</h2>
 
 <dl>
+
+<dt>2007-12-05</dt>
+
+<dd>
+<p><samp xml:lang="en">chklinks</samp> 最新版本 3.08 。新版修正好幾個說明文件的問題。<a href="ftp://ftp.imacat.idv.tw/pub/chklinks/chklinks-3.08.tar.gz" type="application/x-gzip">下載 <samp xml:lang="en">chklinks</samp> 3.08 版</a>。</p>
+</dd>
+
+
 <dt>2007-12-05</dt>
 
 <dd>
@@ -160,12 +168,13 @@ q:lang(en) {
 <dd>
 <p>申請 <span xml:lang="en">SourceForge</span> 專案。</p>
 </dd>
+
 </dl>
 
 
 <h2>說明</h2>
 
-<p><dfn><samp xml:lang="en">chklinks</samp></dfn> 是用 <acronym title="Practical Extraction and Reporting Language" xml:lang="en">Perl</acronym> 寫的單執行緒連結檢查程式，用來檢查網站上的超連結有沒有疏漏。</p>
+<p><dfn><samp xml:lang="en">chklinks</samp></dfn> 是單執行緒的 <acronym title="Practical Extraction and Reporting Language" xml:lang="en">Perl</acronym> 連結檢查程式，用來檢查網站上的超連結有沒有疏漏。</p>
 
 <p><samp xml:lang="en">chklinks</samp> 和 <a href="http://linkchecker.sourceforge.net/" hreflang="en" xml:lang="en"><samp>linkchecker</samp></a> 不同之處在於，<samp xml:lang="en">chklinks</samp> 不是多執行緒的程式。 <samp xml:lang="en">chklinks</samp> 檢查時，不會同時啟動一大堆連線同步檢查，耗盡系統資源，導致當機。對大多數網管和使用者而言，這樣做安全得多。</p>
 
@@ -419,8 +428,6 @@ Disallow:
 <pre>Parsing of undecoded UTF-8 will give garbage when decoding entities at /usr/share/perl5/LWP/Protocol.pm line 114.</pre>
 </blockquote>
 
-    <p>這是 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 用新版 <a href="http://search.cpan.org/dist/HTML-Parser/" hreflang="en" xml:lang="en"><samp>HTML::Parser</samp></a> 3.40 版以上時產生的問題。請參閱 <a href="http://rt.cpan.org/Public/Bug/Display.html?id=20274" hreflang="en" xml:lang="en"><acronym title="Comprehensive Perl Archive Network">CPAN</acronym> RT Bug#20274 報告</a>，取得 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 的修補程式。</p>
-    
     <p>這是 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 1.43 版或之前的版本（ <samp>libwww-perl</samp> 5.805 版或之前的版本），碰上 <a href="http://search.cpan.org/dist/HTML-Parser/" hreflang="en" xml:lang="en"><samp>HTML::Parser</samp></a> 3.40 版或之後的版本及 <acronym title="Practical Extraction and Reporting Language" xml:lang="en">Perl</acronym> 5.8 版或之後的版本時，產生的問題。 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 1.46 版以後（ <samp>libwww-perl</samp> 5.806 版以後），已解決這個問題。請昇級到最新版的 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 。若妳因故無法昇級，請參閱 <a href="http://rt.cpan.org/Public/Bug/Display.html?id=20274" hreflang="en" xml:lang="en"><acronym title="Comprehensive Perl Archive Network">CPAN</acronym> RT Bug#20274 報告</a>，取得 <a href="http://search.cpan.org/dist/libwww-perl/" hreflang="en" xml:lang="en"><samp>LWP::Protocol</samp></a> 的修補程式。</p>
 </li>
 </ul>
@@ -449,16 +456,16 @@ Disallow:
 
 <h2>支援協助</h2>
 
-<p><samp xml:lang="en">arclog</samp> 網站架在 <a href="https://sourceforge.net/" hreflang="en" xml:lang="en">SourceForge</a> 、 <a href="http://www.cpan.org/" hreflang="en" xml:lang="en"><acronym title="Comprehensive Perl Archive Network">CPAN</acronym></a> 與 <a href="http://www.imacat.idv.tw/">旅舍依瑪</a>。索取最新資訊，請駕臨：</p>
+<p><samp xml:lang="en">chklinks</samp> 網站架在 <a href="https://sourceforge.net/" hreflang="en" xml:lang="en">SourceForge</a> 、 <a href="http://www.cpan.org/" hreflang="en" xml:lang="en"><acronym title="Comprehensive Perl Archive Network">CPAN</acronym></a> 與 <a href="http://www.imacat.idv.tw/">旅舍依瑪</a>。索取最新資訊，請駕臨：</p>
 
 <ul>
-<li><p><a href="http://arclog.sourceforge.net/"><span xml:lang="en">SourceForge</span> 上的 <samp xml:lang="en">arclog</samp> 網站</a>。</p></li>
-<li><p><a href="http://sourceforge.net/projects/arclog/" hreflang="en"><samp xml:lang="en">arclog</samp> <span xml:lang="en">SourceForge</span> 專案頁</a>。</p></li>
-<li><p><a href="http://search.cpan.org/dist/arclog/" hreflang="en"><samp xml:lang="en">arclog</samp> <acronym title="Comprehensive Perl Archive Network" xml:lang="en">CPAN</acronym> 專案頁</a>。</p></li>
-<li><p><a href="http://www.imacat.idv.tw/tech/arclog.html">旅舍依瑪 <samp xml:lang="en">arclog</samp> 網頁</a>。</p></li>
+<li><p><a href="http://chklinks.sourceforge.net/"><span xml:lang="en">SourceForge</span> 上的 <samp xml:lang="en">chklinks</samp> 網站</a>。</p></li>
+<li><p><a href="http://sourceforge.net/projects/chklinks/" hreflang="en"><samp xml:lang="en">chklinks</samp> <span xml:lang="en">SourceForge</span> 專案頁</a>。</p></li>
+<li><p><a href="http://search.cpan.org/dist/chklinks/" hreflang="en"><samp xml:lang="en">chklinks</samp> <acronym title="Comprehensive Perl Archive Network" xml:lang="en">CPAN</acronym> 專案頁</a>。</p></li>
+<li><p><a href="http://www.imacat.idv.tw/tech/chklinks.html">旅舍依瑪 <samp xml:lang="en">chklinks</samp> 網頁</a>。</p></li>
 </ul>
 
-<p>在 <a href="https://sourceforge.net/" hreflang="en" xml:lang="en">SourceForge</a> 上有一個 <a href="mailto:arclog-users&#64;lists.sourceforge.net"><samp xml:lang="en">arclog</samp> 的郵件通訊</a> 。使用上的問題、建議或錯誤回報，請提到通訊上討論。它是 <a href="http://www.list.org/" hreflang="en" xml:lang="en">Mailman</a> 的郵件通訊。若要加入，請到 <a href="https://lists.sourceforge.net/lists/listinfo/arclog-users" hreflang="en"><samp xml:lang="en">arclog</samp> 郵件通訊的網頁</a> 。妳也可以寫信到 <a href="mailto:arclog-users-request&#64;lists.sourceforge.net"><acronym title="electronic mail" xml:lang="en">E-mail</acronym> 指令信箱</a>，標題填上 <samp xml:lang="en">help</samp> ，索取 <acronym title="electronic mail" xml:lang="en">E-mail</acronym> 指令說明。</p>
+<p>在 <a href="https://sourceforge.net/" hreflang="en" xml:lang="en">SourceForge</a> 上有一個 <a href="mailto:chklinks-users&#64;lists.sourceforge.net"><samp xml:lang="en">chklinks</samp> 的郵件通訊</a> 。使用上的問題、建議或錯誤回報，請提到通訊上討論。它是 <a href="http://www.list.org/" hreflang="en" xml:lang="en">Mailman</a> 的郵件通訊。若要加入，請到 <a href="https://lists.sourceforge.net/lists/listinfo/chklinks-users" hreflang="en"><samp xml:lang="en">chklinks</samp> 郵件通訊的網頁</a> 。妳也可以寫信到 <a href="mailto:chklinks-users-request&#64;lists.sourceforge.net"><acronym title="electronic mail" xml:lang="en">E-mail</acronym> 指令信箱</a>，標題填上 <samp xml:lang="en">help</samp> ，索取 <acronym title="electronic mail" xml:lang="en">E-mail</acronym> 指令說明。</p>
 
 </div>
 

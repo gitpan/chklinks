@@ -1,5 +1,22 @@
 chklinks change log
 
+2007-12-05	version 3.08
+	Documentation fixes.
+	 1. README.zh-*, chklinks.zh-*.html: Fixed the description
+	    "是用 Perl 寫的單執行緒連結檢查程式" to "是單執行緒的 Perl 連結
+	    檢查程式", according to the existing short description in
+	    README.zh-tw.  I was out of my mind to miss this and translate
+	    it again.
+	 2. chklinks.zh-tw.html, chklinks.zh-cn.html: Removed the old
+	    excess LWP/UTF-8 paragraph from the Notes section.
+	 3. chklinks.en.html: Fixed "for a LWP::Protocol patch" to
+	    "for an LWP::Protocol patch".
+	 4. README.en: Fixed "LWP::RobotUA(3)" to "LWP::RobotUA".
+	 5. README*: Updated the LWP/UTF-8 information.
+	 6. chklinks.*.html: Fixed the support section, replacing all
+	    instances of "arclog" to "chklinks".  It is terrible that I just
+	    copied and pasted without reviewing.
+
 2007-12-05	version 3.07
 	 1. chklinks.*.html: Refer to NEWS instead of Changes for release
 	    notes.
