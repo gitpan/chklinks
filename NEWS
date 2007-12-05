@@ -1,3 +1,7 @@
+New in 3.09:
+* Fixed the bug on systems like MS-Windows that does not have
+  getpwuid().
+
 New in 3.08:
 * Documentation fixes.
 
@@ -11,7 +15,7 @@ New in 3.06:
 * Test suite fixes.
 
 New in 3.05:
-* Fixed problem with Perl version earlier than 5.8 where
+* Fixed the problem with Perl version earlier than 5.8 where
   UTF-8 mode is not available.
 
 New in 3.04:

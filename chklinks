@@ -50,7 +50,7 @@ sub rep_uri($);
 
 use vars qw($THIS_FILE $VERSION $VERBOSE);
 $THIS_FILE = basename($0);
-$VERSION = "3.08";
+$VERSION = "3.09";
 $VERBOSE = 1;
 
 use vars qw(@STARTS $RECURSIVE $PARENT $NOREMOTE @EXCLUDES);
@@ -576,7 +576,8 @@ sub get_ua($) {
     # Create a new user agent
     $UA{$_} = new LWP::RobotUA(
         "agent"         => $UASTR,
-        "from"          => (getpwuid($>) or $>) . "@" . hostname,
+        "from"          => (getlogin or getpwuid $> or $> or $THIS_FILE)
+                            . "@" . hostname,
         "keep_alive"    => 1,
         "cookie_jar"    => $COOKIE_JAR,
     );

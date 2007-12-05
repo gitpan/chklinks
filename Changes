@@ -1,5 +1,11 @@
 chklinks change log
 
+2007-12-05	version 3.09
+	MS-Windows fix.
+	 1. chklinks: Fixed the "from" address of the user agent to use
+	    getlogin() and then getpwuid(), in order to work on systems
+	    that only have getlogin() but not getpwuid(), like MS-Windows.
+
 2007-12-05	version 3.08
 	Documentation fixes.
 	 1. README.zh-*, chklinks.zh-*.html: Fixed the description
