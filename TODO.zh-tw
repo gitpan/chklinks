@@ -8,8 +8,8 @@
 * 應該可以支援 mailto: 的網址，檢查其 DNS/MX 是否可用。 Bastian
   Kleineidam 的 linkchecker 有支援這個功能。
 
-* 一般檔案的支援目前只在 Unix 和 MSWin32 上測試過，還需要在其它作業系
-  統如 VMS 及 Mac 上測試能不能運作。
+* 一般檔案的支援目前只在 Unix 和 MS-Windows 上測試過，還需要在其它作業
+  系統如 VMS 及 Mac 上測試能不能運作。
 
 * chklinks 尚未遵守 robots.txt 的 Crawl-delay: 規則。不過這是
   WWW::RobotRules 的問題，不是 chklinks 的問題。

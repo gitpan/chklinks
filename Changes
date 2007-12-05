@@ -1,5 +1,49 @@
 chklinks change log
 
+2007-12-05	version 3.07
+	 1. chklinks.*.html: Refer to NEWS instead of Changes for release
+	    notes.
+	 2. README*, chklinks.*.html: Fixed the description "is a Perl link
+	    checker" to "is a non-threaded Perl link checker".
+	 3. chklinks, README, Build.PL, Makefile.PL: Fixed the short
+	    description "perl link checker" to "Perl link checker".
+
+2007-12-04
+	 1. Makefile.PL: Fixed to prevent importing symbols when
+	    checking optional prerequisites.
+
+2007-12-03
+	 1. Makefile.PL, Build.PL: Added comment on the short description of
+	    this file to the beginning of the file.
+	 2. Makefile.PL, Build.PL: Added "use warnings;".
+
+2007-12-01
+	 1. chklinks, Makefile.PL: Use "use 5.006" instead of "use 5.6.0",
+	    for compatibility with older Perl, and get ride of the warning
+	    of Perl 5.10.
+
+2007-11-27
+	 1. chklinks.zh-tw.html, chklinks.zh-cn.html: Tag the languages.
+
+2007-11-26
+	 1. License updated to GPLv3.
+	 2. chklinks.*.html: Added version number to the title.
+	 3. chklinks.zh-cn.html: Fixed the quotation style.
+	 4. fdl.txt: Updated (FSF address).
+	 5. MSWin32 and MS-Win32 is now written as MS-Windows in the
+	    documentation.
+	 6. Build.PL: Added "recommends" and "build_requires".
+
+2007-11-25
+	 1. chklinks.en.html, INSTALL: Fixed the typo "archieve" as "archive".
+
+2007-11-22
+	 1. chklinks: Fixed $SIG{__WARN__} to $SIG{"__WARN__"} in the
+	    parse_args() subroutine.
+	 2. chklinks: Removed the Chinese GPL copyright message.  There should
+	    only be one version of the copyright message, and should not be
+	    any Chinese comment.
+
 2007-06-08	version 3.06
 	Test suite updates
 	 1. t/01-basic.t: Added test 21 to check if we have exhausted all

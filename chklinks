@@ -1,11 +1,11 @@
 #! /usr/bin/perl -w
-# chklinks: A non-threaded perl link checker
+# chklinks: A non-threaded Perl link checker
 
 # Copyright (c) 2003-2007 imacat.
 # 
-# This program is free software; you can redistribute it and/or modify
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
+# the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 # 
 # This program is distributed in the hope that it will be useful,
@@ -14,25 +14,11 @@
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-# 版權所有 (c) 2003-2007 依瑪貓
-# 
-# 本程式是自由軟體，您可以遵照自由軟體基金會（ Free Software Foundation
-# ）出版的 GNU 通用公共許可證條款（ GNU General Public License ）第二版
-# 來修改和重新發佈這一程式，或者自由選擇使用任何更新的版本。
-# 
-# 發佈這一程式的目的是希望它有用，但沒有任何擔保。甚至沒有適合特定目的
-# 而隱含的擔保。更詳細的情況請參閱 GNU 通用公共許可證。
-# 
-# 您應該已經和程式一起收到一份 GNU 通用公共許可證的副本。如果還沒有，寫
-# 信給： Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-# Boston, MA 02111-1307, USA.
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # First written: 2003-04-12
 
-use 5.6.0;
+use 5.006;
 use strict;
 use warnings;
 use Config qw();
@@ -64,7 +50,7 @@ sub rep_uri($);
 
 use vars qw($THIS_FILE $VERSION $VERBOSE);
 $THIS_FILE = basename($0);
-$VERSION = "3.06";
+$VERSION = "3.07";
 $VERBOSE = 1;
 
 use vars qw(@STARTS $RECURSIVE $PARENT $NOREMOTE @EXCLUDES);
@@ -137,7 +123,7 @@ sub parse_args() {
     
     # Get the arguments
     eval {
-        local $SIG{__WARN__} = sub { die $_[0]; };
+        local $SIG{"__WARN__"} = sub { die $_[0]; };
         Getopt::Long::Configure(qw(no_auto_abbrev bundling));
         GetOptions( "onelevel|1"=>sub { $RECURSIVE = 0; },
                     "recursive|r"=>sub { $RECURSIVE = 1; },
@@ -682,8 +668,8 @@ chklinks - A non-threaded Perl link checker
 
 =head1 DESCRIPTION
 
-F<chklinks> is a Perl link checker.  It helps finding broken links
-on your website.
+F<chklinks> is a non-threaded Perl link checker.  It helps finding
+broken links on your website.
 
 F<chklinks> differs from C<linkchecker> in that F<chklinks> is non-
 threaded.  It does not raises many simultaneously connections for its
@@ -835,9 +821,9 @@ imacat <imacat@mail.imacat.idv.tw>.
 
 Copyright (c) 2003-2007 imacat.
 
-This program is free software; you can redistribute it and/or modify
+This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
+the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -846,7 +832,6 @@ I<MERCHANTABILITY> or I<FITNESS FOR A PARTICULAR PURPOSE>.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+along with this program.  If not, see L<http://www.gnu.org/licenses/>.
 
 =cut

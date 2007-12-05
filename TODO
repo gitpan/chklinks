@@ -9,8 +9,8 @@
 * mailto: URLs should be supported by checking the validity of its
   DNS/MX record.
 
-* Local file checking has only been tested on Unix and MSWin32.  More
-  platforms should be tested, especially VMS and Mac.
+* Local file checking has only been tested on Unix and MS-Windows.
+  More platforms should be tested, especially VMS and Mac.
 
 * chklinks does not obey Crawl-delay: in robots.txt yet.  This is a
   problem in WWW::RobotRules, but not chklinks itself.

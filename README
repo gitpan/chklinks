@@ -1,10 +1,10 @@
-chklinks - a non-threaded perl link checker.
+chklinks - A non-threaded Perl link checker.
 
   Copyright (c) 2003-2007 imacat.
   
-  This program is free software; you can redistribute it and/or modify
+  This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
+  the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
   
   This program is distributed in the hope that it will be useful,
@@ -13,11 +13,10 @@ chklinks - a non-threaded perl link checker.
   GNU General Public License for more details.
   
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    chklinks is a Perl link checker.  It helps finding broken links
-on your website.
+    chklinks is a non-threaded Perl link checker.  It helps finding
+broken links on your website.
 
     chklinks differs from linkchecker in that chklinks is
 non-threaded.  It does not raises many simultaneously connections for
@@ -62,6 +61,6 @@ the latest infomation, see:
 
 
 imacat
-2006-05-30
+2007-12-05
 imacat@mail.imacat.idv.tw
 http://www.imacat.idv.tw/

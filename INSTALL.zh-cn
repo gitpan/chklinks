@@ -2,10 +2,10 @@ chklinks 安装指南
 
 ◎目录
 
-　◎系统需求
-　◎安装指南
-　　◎◎以 ExtUtils::MakeMaker 安装
-　　◎◎以 Module::Build 安装
+  ◎系统需求
+  ◎安装指南
+    ◎◎以 ExtUtils::MakeMaker 安装
+    ◎◎以 Module::Build 安装
 
 
 ◎系统需求
@@ -17,7 +17,7 @@ Perl 网站下载安装最新版 Perl 。
 
   http://www.perl.com/
 
-　　　若你是用 MS-Windows ，可以下载安装 ActiveState 公司的 ActivePerl 。
+      若你是用 MS-Windows ，可以下载安装 ActiveState 公司的 ActivePerl 。
 
   http://www.activestate.com/
 
@@ -27,7 +27,7 @@ LWP::RobotUA 。 HTML::LinkExtor 为 HTML-Parser 中的模组， LWP::RobotUA
 
   http://www.cpan.org/
 
-　　　若你由 CPAN 或 CPANPLUS 中安装，会自动帮你安装这些所需的模组。
+      若你由 CPAN 或 CPANPLUS 中安装，会自动帮你安装这些所需的模组。
 
    3. 选配的 Perl 模组：
 
@@ -42,52 +42,52 @@ LWP::RobotUA 。 HTML::LinkExtor 为 HTML-Parser 中的模组， LWP::RobotUA
 
 ◎◎以 ExtUtils::MakeMaker 安装
 
-　　chklinks 用 Perl 标准的 ExtUtils::MakeMaker 安装，程序如下：
+    chklinks 用 Perl 标准的 ExtUtils::MakeMaker 安装，程序如下：
 
     % perl Makefile.PL
     % make
     % make test
     % make install
 
-　　在 make install 前，请先确认你有在安装目录存档的权限。通常这时候
+    在 make install 前，请先确认你有在安装目录存档的权限。通常这时候
 要切换为 root ，才能安装存档。
 
-　　若你是用 MSWin32 下的 ActivePerl ， make 请改用 nmake 。 nmake 可
-由微软的 FTP 站下载：
+    若你是用 MS-Windows 下的 ActivePerl ， make 请改用 nmake 。 nmake
+可由微软的 FTP 站下载：
 
   ftp://ftp.microsoft.com/Softlib/MSLFILES/nmake15.exe
 
-　　若要安装到其它地方，请设定好 PREFIX 。例如，一般使用者，要安装在
+    若要安装到其它地方，请设定好 PREFIX 。例如，一般使用者，要安装在
 自己的目录下时：
 
   % perl Makefile.PL PREFIX=/home/jessica
 
-　　要知道更多安装选项的细节，请参阅 ExtUtils::MakeMaker 的说明（请执
+    要知道更多安装选项的细节，请参阅 ExtUtils::MakeMaker 的说明（请执
 行 perldoc ExtUtils::MakeMaker ）。
 
 
 ◎◎以 Module::Build 安装
 
-　　若你喜欢，也可以用 Module::Build 安装，程序如下：
+    若你喜欢，也可以用 Module::Build 安装，程序如下：
 
     % perl Build.PL
     % ./Build
     % ./Build test
     % ./Build install
 
-　　在 ./Build install 前，请先确认你有在安装目录存档的权限。通常这时
+    在 ./Build install 前，请先确认你有在安装目录存档的权限。通常这时
 候要切换为 root ，才能安装存档。
 
-　　若要安装到其它地方，请设定好 --prefix 。例如，一般使用者，要安装
+    若要安装到其它地方，请设定好 --prefix 。例如，一般使用者，要安装
 在自己的目录下时：
 
   % perl Build.PL --prefix=/home/jessica
 
-　　要知道更多安装选项的细节，请参阅 Module::Build 的说明（请执行
+    要知道更多安装选项的细节，请参阅 Module::Build 的说明（请执行
 perldoc Module::Build ）。
 
 
 依玛猫 imacat ^_*'
-2006-06-07
+2007-11-26
 imacat@mail.imacat.idv.tw
 http://www.imacat.idv.tw/

@@ -18,7 +18,7 @@ you can download and install/upgrade it from Perl website.
 
 http://www.perl.com/
 
-      If you are using MS-Win32, you can download and install
+      If you are using MS-Windows, you can download and install
 ActiveState ActivePerl.
 
 http://www.activestate.com/
@@ -26,7 +26,7 @@ http://www.activestate.com/
    2. Required Perl modules: URI, HTML::LinkExtor and LWP::RobotUA.
 HTML::LinkExtor is part of the HTML-Parser package, and LWP::RobotUA
 is part of the libwww-perl package.  You can download and install
-them from the CPAN archieve.
+them from the CPAN archive.
 
 http://www.cpan.org/
 
@@ -34,10 +34,14 @@ http://www.cpan.org/
 shall be automatically installed.
 
    3. Optional Perl modules:
-   
-     * Crypt::SSLeay
 
-      This is needed for LWP::RobotUA to support HTTPS.
+    * Crypt::SSLeay
+
+          This is needed for LWP::RobotUA to support HTTPS.
+
+      You can always search, download and install the missing Perl
+  modules from the the CPAN archive.
+
 
 * Installation Instruction
 
@@ -55,8 +59,9 @@ Follow these steps:
 write to the instalation location.  This usually requires the root
 priviledge.
 
-    If you are using ActivePerl under MSWin32, you should use nmake
-instead of make. nmake can be obtained from the Microsoft FTP site.
+    If you are using ActivePerl under MS-Windows, you should use
+nmake instead of make. nmake can be obtained from the Microsoft FTP
+site.
 
 ftp://ftp.microsoft.com/Softlib/MSLFILES/nmake15.exe
 
@@ -95,6 +100,6 @@ installation options (by running perldoc Module::Build).
 
 
 imacat
-2006-06-07
+2007-11-26
 imacat@mail.imacat.idv.tw
 http://www.imacat.idv.tw/

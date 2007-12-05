@@ -1,3 +1,9 @@
+New in 3.07:
+* Required Perl version number compatible to older versions, to work
+  with the Perl 5.10 warning.
+* License updated to GPLv3.
+* Documentation fixes.
+
 New in 3.06:
 * Test suite fixes.
 
